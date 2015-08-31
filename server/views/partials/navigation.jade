@@ -1,0 +1,14 @@
+header.navbar.navbar-light.navbar-static-top(role='banner')
+  .clearfix
+    button.navbar-toggler.pull-right.hidden-sm-up(type='button', data-toggle='collapse', data-target='#bd-main-nav')
+      | ☰
+    a.navbar-brand.hidden-sm-up(href='/')
+      | Bootstrap
+  #bd-main-nav.collapse.navbar-toggleable-xs
+    nav.nav.navbar-nav
+      a.nav-item.nav-link.active(href='/', onclick="ga('send', 'event', 'Navbar', 'Community links', 'Bootstrap');") Bootstrap
+      a.nav-item.nav-link(href='/getting-started/introduction/', onclick="ga('send', 'event', 'Navbar', 'Community links', 'Docs');") Documentation
+      a.nav-item.nav-link(href='/examples/', onclick="ga('send', 'event', 'Navbar', 'Community links', 'Examples');") Examples
+      a.nav-item.nav-link(href='http://themes.getbootstrap.com', onclick="ga('send', 'event', 'Navbar', 'Community links', 'Themes');") Themes
+      a.nav-item.nav-link(href='http://expo.getbootstrap.com', onclick="ga('send', 'event', 'Navbar', 'Community links', 'Expo');") Expo
+      a.nav-item.nav-link(href='http://blog.getbootstrap.com', onclick="ga('send', 'event', 'Navbar', 'Community links', 'Blog');") Blog

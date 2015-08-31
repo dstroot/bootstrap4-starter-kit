@@ -1,0 +1,7 @@
+# .dockerignore
+.git/
+.env
+node_modules/
+coverage/
+less/
+test/

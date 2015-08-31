@@ -1,0 +1,7 @@
+// !! You have to override variables first!
+
+$font-family-sans-serif:  "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+@import "bootstrap.scss";
+
+$fa-font-path:        "../lib/font-awesome/fonts";
+@import "../../public/lib/font-awesome/scss/font-awesome.scss";

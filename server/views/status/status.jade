@@ -1,0 +1,196 @@
+extends ../layouts/layout
+
+block head
+  title #{application} &middot; Enrollment
+
+block styles
+
+block content
+  .container
+    h1.text-uppercase Income Tax Refund Status
+    p 
+      | To find out when your refund is expected to fund please visit the IRS website at 
+      a(href='http://www.irs.gov') www.irs.gov
+      | &nbsp; and click on "Get your refund status". You can also call the IRS at (800) 829-1954.  We will process your refund as soon as it is received.
+    .row
+      .col-md-12
+        h4.text-uppercase Funding
+        .table-responsive
+          table.table.bg-gray-lighter
+            tr
+              th.text-uppercase Funding Source
+              th.text-uppercase Expected Amount
+              th.text-uppercase Received Amount
+            tr
+              td Federal Income Tax
+              td $6,345.00
+              td $6,127.13
+            tr
+              td California State Income Tax
+              td $1,203.00
+              td -
+            tr.brand4
+              td.text-uppercase 
+                h1 Total
+              td 
+                h1 $1,203.00
+              td 
+                h1 $7.601.12
+    .row
+      .col-md-12
+        h4.text-uppercase Refund Deductions
+        .chart-wrapper.bg-gray-lighter
+          //- legend Total Processing
+          canvas#totalChart
+          h4#percent
+          h4#amount 
+          #totalLegend
+    .row
+      .col-md-12
+        h4.text-uppercase Disbursement
+        .table-responsive
+          table.table.bg-gray-lighter
+            tr
+              th.text-uppercase Date
+              th.text-uppercase Method
+              th.text-uppercase Amount
+            tr
+              td Federal Income Tax
+              td $6,345.00
+              td $6,127.13
+            tr
+              td California State Income Tax
+              td $1,203.00
+              td -
+            tr.brand4
+              td.text-uppercase 
+                h1 Total
+              td 
+                h1 $1,203.00
+              td 
+                h1 $7.601.12              
+        
+
+            
+block scripts
+  script(src='/lib/Chart.js/Chart.min.js')
+  script.
+    $(document).ready(function () {
+      
+      if (#{count} > 0) {
+        
+        //- Set global chart options
+        Chart.defaults.global.responsive = true;
+        
+        /**
+         * Total Processing
+         */
+        
+        var canvasTotal;
+        var ctxTotal;
+        var notPaid;
+        var percentComplete;
+        
+        percentComplete = 100 * (Number(#{paid}) / Number(#{count}));
+        percentComplete.toFixed(2);
+        
+        //- Get the context of the canvas element we want to select
+        canvasTotal = document.getElementById('totalChart');
+        ctxTotal = canvasTotal.getContext('2d');
+        notPaid = Number(#{count}) - Number(#{paid});
+        
+        //- Define total data
+        var totalData = [
+          {
+            value: Number(#{paid}),
+            color: "#46BFBD",
+            highlight: "#5AD3D1",
+            label: "Paid"
+          },
+          {
+            value: notPaid,
+            color:"#F7464A",
+            highlight: "#FF5A5E",
+            label: "Not Paid"
+          }
+        ];
+        
+        //- Draw total doughnut chart
+        var totalDoughnutChart = new Chart(ctxTotal).Doughnut(totalData, {
+          legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0;i<segments.length;i++){%><li></span><%if(segments[i].label){%><%=segments[i].label%>:&nbsp;<%=segments[i].value%><%}%></li><%}%></ul>"
+        });
+        
+        //- Draw legend
+        //- document.getElementById("totalLegend").innerHTML = totalDoughnutChart.generateLegend();
+        document.getElementById("percent").innerHTML = 'Percent Complete: ' + percentComplete.toFixed(2) + '%';
+        document.getElementById("amount").innerHTML = 'Amount Collected: $' + (Number(#{paidBankAmount}) + Number(#{paidCreditCardAmount})).toFixed(2);
+        
+        /**
+         * Bank vs. Credit Card
+         */
+        
+        var canvasSplit;
+        var ctxSplit;
+        var paidBank = 5;
+        var paidCreditCard = 2;
+        
+        //- Get the context of the canvas element we want to select
+        canvasSplit = document.getElementById('splitChart');
+        ctxSplit = canvasSplit.getContext('2d');
+        
+        //- Sefine split data
+        var splitData = [
+          {
+            value: Number(#{paidCreditCardCount}),
+            color: "#FDB45C",
+            highlight: "#FFC870",
+            label: "Credit Card"
+          },
+          {
+            value: Number(#{paidBankCount}),
+            color: "#46BFBD",
+            highlight: "#5AD3D1",
+            label: "Bank Account"
+          }
+        ];
+        
+        //- Draw split doughnut chart
+        var splitDoughnutChart = new Chart(ctxSplit).Doughnut(splitData, {
+          legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0;i<segments.length;i++){%><li></span><%if(segments[i].label){%><%=segments[i].label%>:&nbsp;<%=segments[i].value%><%}%></li><%}%></ul>"
+        });
+        
+        //- Draw legend
+        //- document.getElementById("splitLegend").innerHTML = splitDoughnutChart.generateLegend();
+        document.getElementById("paidCreditCard").innerHTML = 'Paid via Credit Card: $' + Number(#{paidCreditCardAmount}).toFixed(2);
+        document.getElementById("paidBank").innerHTML = 'Paid via Bank: $' + Number(#{paidBankAmount}).toFixed(2);
+
+      } 
+      
+    });
+  
+  
+  
+  
+  
+  //- script.
+  //-   setTimeout(function() {
+  //-     var stylesheet;
+  //-     // from head
+  //-     stylesheet = document.createElement('link');
+  //-     stylesheet.href = '//fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,500,700';
+  //-     stylesheet.rel = 'stylesheet';
+  //-     stylesheet.type = 'text/css';
+  //-     document.getElementsByTagName('head')[0].appendChild(stylesheet);
+  //-     // from styles above
+  //-     stylesheet = document.createElement('link');
+  //-     stylesheet.href = '/css/page-enrollment.min.css';
+  //-     stylesheet.rel = 'stylesheet';
+  //-     stylesheet.type = 'text/css';
+  //-     document.getElementsByTagName('head')[0].appendChild(stylesheet);
+  //-     // from syles above
+  //-     stylesheet = document.createElement('link');
+  //-     stylesheet.href = '/lib/animate.css/animate.min.css';
+  //-     stylesheet.rel = 'stylesheet';
+  //-     stylesheet.type = 'text/css';
+  //-     document.getElementsByTagName('head')[0].appendChild(stylesheet);
+  //-   }, 0);

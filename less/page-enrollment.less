@@ -1,0 +1,113 @@
+@import (reference) "main.less";
+
+/**
+ * Space out buttons on Mobile
+ */
+
+@media (max-width: 768px) {
+  .btn-block {
+    margin: 15px 0 10px 0;  /*TRBL*/
+  }
+}
+
+/**
+ * Animate CSS
+ */
+
+// TODO should not be vendors specific!
+
+.animation-fast {
+  -webkit-animation-duration: 2s;
+  -webkit-animation-delay: 1s;
+}
+
+.animation-slow {
+  -webkit-animation-duration: 3s;
+  -webkit-animation-delay: 2s;
+}
+
+/**
+* Hero
+* Creates a hero section with an image background
+*/
+
+.hero {
+  transform: translateZ(0);  // https://krimo.github.io/2014/07/23/jank-busting-tutorial/
+  background: url('https://d1ir1l1v07ijd0.cloudfront.net/img/backgrounds/professionalBG.jpg') no-repeat center center;
+  background-size: cover;
+  padding: 450px 0 200px 0; /* TRBL */
+  // height: 100%;
+  min-height: 600px;
+  max-height: 700px;
+  .hero-heading {
+    text-align: center;
+    h1 {
+      line-height: 1;
+      color: @white;
+      margin-bottom: 10px;
+    }
+    p {
+      margin-bottom: 30px;
+      font-size: 22px;
+      color: @brand4;
+    }
+    .form-horizontal {
+      padding-left: 20px;
+      margin-left: 20px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 200px 0 150px 0; /* TRBL */
+    // height: 736px;
+    min-height: 500px;
+    max-height: 550px;
+  }
+}
+
+// .masthead-brand {
+//   margin-top: 20px;
+//   position: fixed;
+//   top: 0;
+// }
+
+/*
+ * Hero Section Buttons
+ */
+
+/* White Button */
+.btn-hero {
+  color: @gray-dark;
+  text-shadow: none; /* Prevent inheritence from `body` */
+  box-shadow: none;
+  background-color: @white;
+  border-color: @white;
+}
+.btn-hero:hover,
+.btn-hero:focus,
+.btn-hero:active {
+  color: @white;
+  background-color: transparent;
+  box-shadow: 0 1px 3px rgba(0,0,0,.6);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,.6);
+  border-color: @white;
+}
+/* Clear Button */
+.btn-hero-clear {
+  color: @white;
+  background-color: transparent;
+  border-color: @white;
+  box-shadow: 0 1px 3px rgba(0,0,0,.6);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,.6);
+}
+.btn-hero-clear:hover,
+.btn-hero-clear:focus,
+.btn-hero-clear:active {
+  color: @gray-dark;
+  text-shadow: none; /* Prevent inheritence from `body` */
+  background-color: @white;
+  border-color: @white;
+  box-shadow: none;
+}

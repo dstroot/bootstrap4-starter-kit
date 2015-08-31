@@ -1,0 +1,16 @@
+language: node_js
+
+node_js:
+  - iojs
+
+services:
+
+script: npm run send-coverage
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: RBfe8h4wft46mrhVVeHvugAgaPoQLTfUmr3MEUKcwVtfiFKWnU6vZi/TrxrZom2Ujtwju1xj3FaA7t5j3ao25cCbVMZR56rvfGXlU8ww5v6g7jVefH6aZ2z9Aauc/GNtb1t03klk+eopkM1pPEdimr9OQOkrXxoptlA5Lbau5Ow=
+  app: calm-headland-5991
+  on:
+    repo: sbtpg/tpg-starter-kit

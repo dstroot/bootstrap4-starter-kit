@@ -1,0 +1,53 @@
+// NOTE: By copying the main bootstrap.scss file and importing
+// this one instead we can turn on/off components here
+// without changing any of the bootstrap source files (EASY TO UPDATE)
+
+// Core variables and mixins
+@import "../../public/lib/bootstrap/scss/variables";
+@import "../../public/lib/bootstrap/scss/mixins";
+
+// // Reset and dependencies
+@import "../../public/lib/bootstrap/scss/normalize";
+@import "../../public/lib/bootstrap/scss/print";
+
+// Core CSS
+@import "../../public/lib/bootstrap/scss/reboot";
+@import "../../public/lib/bootstrap/scss/type";
+@import "../../public/lib/bootstrap/scss/images";
+@import "../../public/lib/bootstrap/scss/code";
+@import "../../public/lib/bootstrap/scss/grid";
+@import "../../public/lib/bootstrap/scss/tables";
+@import "../../public/lib/bootstrap/scss/forms";
+@import "../../public/lib/bootstrap/scss/buttons";
+
+// // Components
+@import "../../public/lib/bootstrap/scss/animation";
+@import "../../public/lib/bootstrap/scss/dropdown";
+@import "../../public/lib/bootstrap/scss/button-group";
+@import "../../public/lib/bootstrap/scss/input-group";
+@import "../../public/lib/bootstrap/scss/custom-forms";
+@import "../../public/lib/bootstrap/scss/nav";
+@import "../../public/lib/bootstrap/scss/navbar";
+@import "../../public/lib/bootstrap/scss/card";
+@import "../../public/lib/bootstrap/scss/breadcrumb";
+@import "../../public/lib/bootstrap/scss/pagination";
+@import "../../public/lib/bootstrap/scss/pager";
+@import "../../public/lib/bootstrap/scss/labels";
+@import "../../public/lib/bootstrap/scss/jumbotron";
+@import "../../public/lib/bootstrap/scss/alert";
+@import "../../public/lib/bootstrap/scss/progress";
+@import "../../public/lib/bootstrap/scss/media";
+@import "../../public/lib/bootstrap/scss/list-group";
+@import "../../public/lib/bootstrap/scss/responsive-embed";
+@import "../../public/lib/bootstrap/scss/close";
+
+// Components w/ JavaScript
+@import "../../public/lib/bootstrap/scss/modal";
+@import "../../public/lib/bootstrap/scss/tooltip";
+@import "../../public/lib/bootstrap/scss/popover";
+@import "../../public/lib/bootstrap/scss/carousel";
+
+// Utility classes
+@import "../../public/lib/bootstrap/scss/utilities";
+@import "../../public/lib/bootstrap/scss/utilities-spacing";
+@import "../../public/lib/bootstrap/scss/utilities-responsive";

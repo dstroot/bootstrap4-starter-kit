@@ -1,0 +1,10 @@
+@font-face {
+  font-family: "proxima_nova";
+  src: url("https://d1ir1l1v07ijd0.cloudfront.net/font/proxima-nova/proxima-nova-regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+a {
+  color: #007ee6;
+  text-decoration: none;
+}
