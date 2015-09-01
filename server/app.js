@@ -302,7 +302,7 @@ app.use(helmet.contentSecurityPolicy({
   ],
   scriptSrc: [
     "'self'",
-    // "'unsafe-eval'",
+    "'unsafe-eval'",
     "'unsafe-inline'",
     'http://ajax.googleapis.com',
     'https://ajax.googleapis.com',

@@ -15,6 +15,7 @@ var gulp        = require('gulp');
 var exec        = require('child_process').exec;
 var dotenv      = require('dotenv').load({ silent: true });
 var terminus    = require('terminus');
+var stripLine   = require('gulp-strip-line');
 var runSequence = require('run-sequence');
 
 /**
@@ -61,7 +62,17 @@ var paths = {
     'public/lib/bootstrap/js/src/util.js'
   ],
   js: [
-    'public/lib/bootstrap/js/dist/*.js'
+    'public/lib/bootstrap/js/dist/util.js',
+    'public/lib/bootstrap/js/dist/alert.js',
+    'public/lib/bootstrap/js/dist/button.js',
+    'public/lib/bootstrap/js/dist/carousel.js',
+    'public/lib/bootstrap/js/dist/collapse.js',
+    'public/lib/bootstrap/js/dist/dropdown.js',
+    'public/lib/bootstrap/js/dist/modal.js',
+    'public/lib/bootstrap/js/dist/scrollspy.js',
+    'public/lib/bootstrap/js/dist/tab.js',
+    'public/lib/bootstrap/js/dist/tooltip.js',
+    'public/lib/bootstrap/js/dist/popover.js'
     // 'public/lib/fastclick/lib/fastclick.js'
   ],
   lint: [
@@ -120,6 +131,7 @@ gulp.task('styles', function () {
 
 gulp.task('transpile', function () {
   return gulp.src(paths.es6)                // Get es6 src files
+    // .pipe(stripLine([/^(import|export)/g]))
     .pipe($.babel({
       sourceMap: true,
       modules: 'ignore'
