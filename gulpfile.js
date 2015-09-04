@@ -15,7 +15,7 @@ var gulp        = require('gulp');
 var exec        = require('child_process').exec;
 var dotenv      = require('dotenv').load({ silent: true });
 var terminus    = require('terminus');
-var stripLine   = require('gulp-strip-line');
+// var stripLine   = require('gulp-strip-line');
 var runSequence = require('run-sequence');
 
 /**
@@ -23,6 +23,7 @@ var runSequence = require('run-sequence');
  */
 
 var pkg = require('./package.json');
+
 var banner = [
   '/**',
   ' * <%= pkg.name %> - <%= pkg.description %>',
@@ -30,6 +31,27 @@ var banner = [
   ' */',
   ''
 ].join('\n');
+
+var jqueryCheck = [
+  'if (typeof jQuery === \'undefined\') {',
+  '  throw new Error(\'Bootstrap\\\'s JavaScript requires jQuery\')',
+  '}',
+  ''
+].join('\n');
+
+var jqueryVersionCheck = [
+  '+function ($) {',
+  '  var version = $.fn.jquery.split(\' \')[0].split(\'.\')',
+  '  if ((version[0] < 2 && version[1] < 9) || (version[0] == 1 && version[1] == 9 && version[2] < 1)) {',
+  '    throw new Error(\'Bootstrap\\\'s JavaScript requires jQuery version 1.9.1 or higher\')',
+  '  }',
+  '}(jQuery);',
+  '',
+  '+function ($) {',
+  ''
+].join('\n');
+
+var footer = '\n\n}(jQuery);';
 
 /**
  * Paths
@@ -146,6 +168,9 @@ gulp.task('transpile', function () {
 gulp.task('scripts', ['transpile'], function () {
   return gulp.src(paths.js)                 // Read .js files
     .pipe($.concat('main.js'))              // Concatenate .js files
+    .pipe($.header(jqueryVersionCheck))     // Add banner
+    .pipe($.header(jqueryCheck))            // Add banner
+    .pipe($.footer(footer))                 // Add banner
     .pipe(gulp.dest('./public/js'))         // Save main.js here
     .pipe($.rename({ suffix: '.min' }))     // Add .min suffix
     .pipe($.uglify({ outSourceMap: true })) // Minify the .js
@@ -260,14 +285,8 @@ gulp.task('nodemon', ['build'], function (cb) {
  */
 
 gulp.task('open', ['nodemon'], function () {
-  var options = {
-    url: 'http://localhost:' + parseInt(process.env.PORT, 10) || '3000'
-  };
-  // A file must be specified or gulp will skip the task
-  // Doesn't matter which file since we set the URL above
-  // Weird, I know...
-  gulp.src('./gulpfile.js')
-  .pipe($.open('', options));
+  gulp.src('')
+  .pipe($.open({ app: 'google chrome', uri: 'http://localhost:3000' }));
 });
 
 

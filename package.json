@@ -67,6 +67,7 @@
     "gulp-csscomb": "^3.0.6",
     "gulp-csslint": "^0.2.0",
     "gulp-csso": "~1.0.0",
+    "gulp-footer": "^1.0.5",
     "gulp-header": "^1.7.1",
     "gulp-jscs": "^2.0.0",
     "gulp-jshint": "^1.11.2",
