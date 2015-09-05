@@ -307,6 +307,7 @@ app.use(helmet.contentSecurityPolicy({
     'http://ajax.googleapis.com',
     'https://ajax.googleapis.com',
     'http://www.google-analytics.com',
+    'http://www.google-analytics.com/analytics.js',
     'https://www.google-analytics.com'
   ],
   styleSrc: [

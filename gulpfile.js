@@ -63,27 +63,16 @@ var paths = {
     'public/js/**/*.map',
     'public/js/**/*.min.js',
     'public/lib/bootstrap/js/dist/**/*.js',
+    'public/lib/bootstrap/js/dist/**/*.js.map',
     'public/css/**/*.css',
     'public/css/**/*.min.css',
   ],
   es6: [
-    // ============= Bootstrap  ================
-    // Enable/disable as needed but only turn on
-    // .js that is needed on *every* page. No bloat!
-    // =========================================
-    'public/lib/bootstrap/js/src/alert.js',
-    'public/lib/bootstrap/js/src/button.js',
-    'public/lib/bootstrap/js/src/carousel.js',
-    'public/lib/bootstrap/js/src/collapse.js',
-    'public/lib/bootstrap/js/src/dropdown.js',
-    'public/lib/bootstrap/js/src/modal.js',
-    'public/lib/bootstrap/js/src/popover.js',
-    'public/lib/bootstrap/js/src/scrollspy.js',
-    'public/lib/bootstrap/js/src/tab.js',
-    'public/lib/bootstrap/js/src/tooltip.js',
-    'public/lib/bootstrap/js/src/util.js'
+    'public/lib/bootstrap/js/src/*.js'
   ],
   js: [
+    // Enable/disable as needed but only turn on
+    // .js that is needed on *every* page. No bloat!
     'public/lib/bootstrap/js/dist/util.js',
     'public/lib/bootstrap/js/dist/alert.js',
     'public/lib/bootstrap/js/dist/button.js',
@@ -120,8 +109,8 @@ var paths = {
  * Clean
  */
 
-gulp.task('clean', function (cb) {
-  del(paths.clean, cb);
+gulp.task('clean', function () {
+  return del(paths.clean);
 });
 
 /**

@@ -3,8 +3,8 @@
   padding: 3rem ($grid-gutter-width / 2) 2rem;
   color: $bd-purple-light;
   text-align: center;
-  background: -webkit-linear-gradient(135deg, darken($bd-purple, 20%), $bd-purple, lighten(saturate($bd-purple, 5%), 15%));
-  background:         linear-gradient(135deg, darken($bd-purple, 20%), $bd-purple, lighten(saturate($bd-purple, 5%), 15%));
+  // background: -webkit-linear-gradient(135deg, darken($bd-purple, 20%), $bd-purple, lighten(saturate($bd-purple, 5%), 15%));
+  background: linear-gradient(135deg, darken($bd-purple, 20%), $bd-purple, lighten(saturate($bd-purple, 5%), 15%));
 
   .bd-booticon {
     margin: 0 auto 2rem;
@@ -43,10 +43,6 @@
       background-color: $bd-yellow;
       border-color: $bd-yellow;
     }
-  }
-
-  .carbonad {
-    margin-bottom: -2rem !important;
   }
 
   @include media-breakpoint-up(sm) {

@@ -2071,7 +2071,7 @@ var Modal = (function ($) {
         this._originalBodyPadding = document.body.style.paddingRight || '';
 
         if (this._isBodyOverflowing) {
-          document.body.style.paddingRight = bodyPadding + this._scrollbarWidth + 'px';
+          document.body.style.paddingRight = bodyPadding + (this._scrollbarWidth + 'px');
         }
       }
     }, {
@@ -2794,7 +2794,7 @@ var Tooltip = (function ($) {
   var DefaultType = {
     animation: 'boolean',
     template: 'string',
-    title: '(string|element|function)',
+    title: '(string|function)',
     trigger: 'string',
     delay: '(number|object)',
     html: 'boolean',
@@ -3080,30 +3080,15 @@ var Tooltip = (function ($) {
     }, {
       key: 'setContent',
       value: function setContent() {
-        var $tip = $(this.getTipElement());
+        var tip = this.getTipElement();
+        var title = this.getTitle();
+        var method = this.config.html ? 'innerHTML' : 'innerText';
 
-        this.setElementContent($tip.find(Selector.TOOLTIP_INNER), this.getTitle());
+        $(tip).find(Selector.TOOLTIP_INNER)[0][method] = title;
 
-        $tip.removeClass(ClassName.FADE).removeClass(ClassName.IN);
+        $(tip).removeClass(ClassName.FADE).removeClass(ClassName.IN);
 
         this.cleanupTether();
-      }
-    }, {
-      key: 'setElementContent',
-      value: function setElementContent($element, content) {
-        var html = this.config.html;
-        if (typeof content === 'object' && (content.nodeType || content.jquery)) {
-          // content is a DOM node or a jQuery
-          if (html) {
-            if (!$(content).parent().is($element)) {
-              $element.empty().append(content);
-            }
-          } else {
-            $element.text($(content).text());
-          }
-        } else {
-          $element[html ? 'html' : 'text'](content);
-        }
       }
     }, {
       key: 'getTitle',
@@ -3403,7 +3388,7 @@ var Popover = (function ($) {
   });
 
   var DefaultType = $.extend({}, Tooltip.DefaultType, {
-    content: '(string|element|function)'
+    content: '(string|function)'
   });
 
   var ClassName = {
@@ -3467,13 +3452,19 @@ var Popover = (function ($) {
     }, {
       key: 'setContent',
       value: function setContent() {
-        var $tip = $(this.getTipElement());
+        var tip = this.getTipElement();
+        var title = this.getTitle();
+        var content = this._getContent();
+        var titleElement = $(tip).find(Selector.TITLE)[0];
+
+        if (titleElement) {
+          titleElement[this.config.html ? 'innerHTML' : 'innerText'] = title;
+        }
 
         // we use append for html objects to maintain js events
-        this.setElementContent($tip.find(Selector.TITLE), this.getTitle());
-        this.setElementContent($tip.find(Selector.CONTENT), this._getContent());
+        $(tip).find(Selector.CONTENT).children().detach().end()[this.config.html ? typeof content === 'string' ? 'html' : 'append' : 'text'](content);
 
-        $tip.removeClass(ClassName.FADE).removeClass(ClassName.IN);
+        $(tip).removeClass(ClassName.FADE).removeClass(ClassName.IN);
 
         this.cleanupTether();
       }
