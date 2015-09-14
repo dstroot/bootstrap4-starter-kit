@@ -2026,9 +2026,11 @@ pre code {
   width: 100%;
   padding: .375rem .75rem;
 
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s; 
+
   color: #55595c;
   border: .0625rem solid #ccc;
-  border-radius: .25rem; 
+  border-radius: .25rem;
   background-color: #fff;
   background-image: none;
 }
@@ -2410,12 +2412,13 @@ fieldset[disabled] .checkbox label {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  transition: all .2s ease-in-out; 
   text-align: center;
   vertical-align: middle;
   white-space: nowrap;
 
   border: .0625rem solid transparent;
-  border-radius: .25rem; 
+  border-radius: .25rem;
 
   -ms-touch-action: manipulation;
       touch-action: manipulation;
@@ -9325,8 +9328,6 @@ footer a:hover {
   color: black;
 }
 footer p {
-  font-size: 14px;
-
   margin-top: 15px;
   margin-bottom: 15px;
 }
@@ -9337,11 +9338,25 @@ footer ul {
   /* T R B L */
 }
 footer .footer-copyright {
+  font-size: .9rem;
   line-height: 50px; 
 
   overflow: hidden;
 
   height: 50px;
+
+  color: #818a91;
+  background-color: #373a3c;
+}
+footer .footer-copyright a {
+  text-decoration: none;
+
+  color: #818a91;
+}
+footer .footer-copyright a:hover {
+  text-decoration: none; 
+
+  color: white;
 }
 
 .btn-bs {

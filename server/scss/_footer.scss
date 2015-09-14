@@ -57,7 +57,7 @@ footer {
     }
   }
   p {
-    font-size: 14px;
+    // font-size: 14px;
     margin-top: 15px;
     margin-bottom: 15px;
   }
@@ -75,8 +75,19 @@ footer {
     // }
   }
   .footer-copyright {
+    background-color: $gray-dark;
+    color: $gray-light;
+    font-size: .9rem;
     overflow: hidden;
     height: 50px;
     line-height: 50px;
+    a {
+      text-decoration: none;
+      color: $gray-light;
+      &:hover {
+        color: white;
+        text-decoration: none;
+      }
+    }
   }
 }
