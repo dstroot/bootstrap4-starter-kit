@@ -30,7 +30,7 @@
     "send-coverage": "./node_modules/.bin/istanbul cover --report lcovonly ./node_modules/.bin/_mocha && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "engines": {
-    "iojs": "3.x.x"
+    "node": "4.x.x"
   },
   "dependencies": {
     "airbrake": "^0.3.8",
