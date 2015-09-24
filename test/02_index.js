@@ -28,7 +28,7 @@ describe('Test index.js routes', function () {
           expect(err).to.not.exist;
           expect(res).to.have.status(200);
           expect(res.type).to.equal('text/html');
-          expect(res.text).to.contain('Please signup for the 2016 tax season with Tax Products Group.');
+          expect(res.text).to.contain('Bootstrap is the most popular HTML, CSS, and JS framework in the world for building responsive, mobile-first projects on the web.');
           done();
         });
     });
