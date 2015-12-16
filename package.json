@@ -30,12 +30,12 @@
     "send-coverage": "./node_modules/.bin/istanbul cover --report lcovonly ./node_modules/.bin/_mocha && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "engines": {
-    "node": "4.x.x"
+    "node": "5.x.x"
   },
   "dependencies": {
     "airbrake": "^0.3.8",
     "body-parser": "^1.14.0",
-    "bower": "^1.5.2",
+    "bower": "^1.7.1",
     "colors": "^1.1.2",
     "compression": "^1.5.2",
     "csurf": "^1.8.3",
@@ -57,8 +57,8 @@
   "devDependencies": {
     "chai": "^3.3.0",
     "chai-http": "~1.0.0",
-    "coveralls": "^2.11.4",
-    "del": "^2.0.2",
+    "coveralls": "^2.11.6",
+    "del": "^2.2.0",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.0.2",
     "gulp-babel": "^5.2.1",
@@ -78,9 +78,9 @@
     "gulp-nodemon": "^2.0.4",
     "gulp-open": "^1.0.0",
     "gulp-rename": "~1.2.2",
-    "gulp-sass": "^2.0.4",
+    "gulp-sass": "^2.1.1",
     "gulp-size": "^2.0.0",
-    "gulp-sourcemaps": "~1.5.2",
+    "gulp-sourcemaps": "^1.6.0",
     "gulp-strip-line": "0.0.1",
     "gulp-uglify": "^1.4.1",
     "gulp-util": "^3.0.6",
