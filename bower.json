@@ -20,6 +20,6 @@
     "animate.css": "~3.3.0",
     "bootstrap": "4.0.0-alpha.2",
     "fastclick": "~1.0.6",
-    "font-awesome": "~4.3.0"
+    "font-awesome": "~4.5.0"
   }
 }

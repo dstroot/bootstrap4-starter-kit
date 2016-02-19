@@ -6580,7 +6580,7 @@ a.text-danger:hover {
 }
 
 /*!
- *  Font Awesome 4.3.0 by @davegandy - http://fontawesome.io - @fontawesome
+ *  Font Awesome 4.5.0 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
  */
 /* FONT PATH
@@ -6590,8 +6590,8 @@ a.text-danger:hover {
   font-weight: normal;
   font-style: normal; 
 
-  src: url('../lib/font-awesome/fonts/fontawesome-webfont.eot?v=4.3.0');
-  src: url('../lib/font-awesome/fonts/fontawesome-webfont.eot?#iefix&v=4.3.0') format('embedded-opentype'), url('../lib/font-awesome/fonts/fontawesome-webfont.woff2?v=4.3.0') format('woff2'), url('../lib/font-awesome/fonts/fontawesome-webfont.woff?v=4.3.0') format('woff'), url('../lib/font-awesome/fonts/fontawesome-webfont.ttf?v=4.3.0') format('truetype'), url('../lib/font-awesome/fonts/fontawesome-webfont.svg?v=4.3.0#fontawesomeregular') format('svg');
+  src: url('../lib/font-awesome/fonts/fontawesome-webfont.eot?v=4.5.0');
+  src: url('../lib/font-awesome/fonts/fontawesome-webfont.eot?#iefix&v=4.5.0') format('embedded-opentype'), url('../lib/font-awesome/fonts/fontawesome-webfont.woff2?v=4.5.0') format('woff2'), url('../lib/font-awesome/fonts/fontawesome-webfont.woff?v=4.5.0') format('woff'), url('../lib/font-awesome/fonts/fontawesome-webfont.ttf?v=4.5.0') format('truetype'), url('../lib/font-awesome/fonts/fontawesome-webfont.svg?v=4.5.0#fontawesomeregular') format('svg');
 }
 
 .fa {
@@ -6599,9 +6599,6 @@ a.text-danger:hover {
   font-size: inherit;
 
   display: inline-block;
-
-  -webkit-transform: translate(0, 0);
-          transform: translate(0, 0); 
 
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
@@ -6668,6 +6665,23 @@ a.text-danger:hover {
   border-radius: .1em;
 }
 
+.fa-pull-left {
+  float: left;
+}
+
+.fa-pull-right {
+  float: right;
+}
+
+.fa.fa-pull-left {
+  margin-right: .3em;
+}
+
+.fa.fa-pull-right {
+  margin-left: .3em;
+}
+
+/* Deprecated as of 4.4.0 */
 .pull-right {
   float: right;
 }
@@ -7406,6 +7420,7 @@ a.text-danger:hover {
   content: '';
 }
 
+.fa-feed:before,
 .fa-rss:before {
   content: '';
 }
@@ -8563,6 +8578,8 @@ a.text-danger:hover {
   content: '';
 }
 
+.fa-y-combinator-square:before,
+.fa-yc-square:before,
 .fa-hacker-news:before {
   content: '';
 }
@@ -8594,7 +8611,6 @@ a.text-danger:hover {
   content: '';
 }
 
-.fa-genderless:before,
 .fa-circle-thin:before {
   content: '';
 }
@@ -8866,6 +8882,7 @@ a.text-danger:hover {
   content: '';
 }
 
+.fa-intersex:before,
 .fa-transgender:before {
   content: '';
 }
@@ -8900,6 +8917,10 @@ a.text-danger:hover {
 
 .fa-neuter:before {
   content: '';
+}
+
+.fa-genderless:before {
+  content: '';
 }
 
 .fa-facebook-official:before {
@@ -8945,6 +8966,358 @@ a.text-danger:hover {
 
 .fa-medium:before {
   content: '';
+}
+
+.fa-yc:before,
+.fa-y-combinator:before {
+  content: '';
+}
+
+.fa-optin-monster:before {
+  content: '';
+}
+
+.fa-opencart:before {
+  content: '';
+}
+
+.fa-expeditedssl:before {
+  content: '';
+}
+
+.fa-battery-4:before,
+.fa-battery-full:before {
+  content: '';
+}
+
+.fa-battery-3:before,
+.fa-battery-three-quarters:before {
+  content: '';
+}
+
+.fa-battery-2:before,
+.fa-battery-half:before {
+  content: '';
+}
+
+.fa-battery-1:before,
+.fa-battery-quarter:before {
+  content: '';
+}
+
+.fa-battery-0:before,
+.fa-battery-empty:before {
+  content: '';
+}
+
+.fa-mouse-pointer:before {
+  content: '';
+}
+
+.fa-i-cursor:before {
+  content: '';
+}
+
+.fa-object-group:before {
+  content: '';
+}
+
+.fa-object-ungroup:before {
+  content: '';
+}
+
+.fa-sticky-note:before {
+  content: '';
+}
+
+.fa-sticky-note-o:before {
+  content: '';
+}
+
+.fa-cc-jcb:before {
+  content: '';
+}
+
+.fa-cc-diners-club:before {
+  content: '';
+}
+
+.fa-clone:before {
+  content: '';
+}
+
+.fa-balance-scale:before {
+  content: '';
+}
+
+.fa-hourglass-o:before {
+  content: '';
+}
+
+.fa-hourglass-1:before,
+.fa-hourglass-start:before {
+  content: '';
+}
+
+.fa-hourglass-2:before,
+.fa-hourglass-half:before {
+  content: '';
+}
+
+.fa-hourglass-3:before,
+.fa-hourglass-end:before {
+  content: '';
+}
+
+.fa-hourglass:before {
+  content: '';
+}
+
+.fa-hand-grab-o:before,
+.fa-hand-rock-o:before {
+  content: '';
+}
+
+.fa-hand-stop-o:before,
+.fa-hand-paper-o:before {
+  content: '';
+}
+
+.fa-hand-scissors-o:before {
+  content: '';
+}
+
+.fa-hand-lizard-o:before {
+  content: '';
+}
+
+.fa-hand-spock-o:before {
+  content: '';
+}
+
+.fa-hand-pointer-o:before {
+  content: '';
+}
+
+.fa-hand-peace-o:before {
+  content: '';
+}
+
+.fa-trademark:before {
+  content: '';
+}
+
+.fa-registered:before {
+  content: '';
+}
+
+.fa-creative-commons:before {
+  content: '';
+}
+
+.fa-gg:before {
+  content: '';
+}
+
+.fa-gg-circle:before {
+  content: '';
+}
+
+.fa-tripadvisor:before {
+  content: '';
+}
+
+.fa-odnoklassniki:before {
+  content: '';
+}
+
+.fa-odnoklassniki-square:before {
+  content: '';
+}
+
+.fa-get-pocket:before {
+  content: '';
+}
+
+.fa-wikipedia-w:before {
+  content: '';
+}
+
+.fa-safari:before {
+  content: '';
+}
+
+.fa-chrome:before {
+  content: '';
+}
+
+.fa-firefox:before {
+  content: '';
+}
+
+.fa-opera:before {
+  content: '';
+}
+
+.fa-internet-explorer:before {
+  content: '';
+}
+
+.fa-tv:before,
+.fa-television:before {
+  content: '';
+}
+
+.fa-contao:before {
+  content: '';
+}
+
+.fa-500px:before {
+  content: '';
+}
+
+.fa-amazon:before {
+  content: '';
+}
+
+.fa-calendar-plus-o:before {
+  content: '';
+}
+
+.fa-calendar-minus-o:before {
+  content: '';
+}
+
+.fa-calendar-times-o:before {
+  content: '';
+}
+
+.fa-calendar-check-o:before {
+  content: '';
+}
+
+.fa-industry:before {
+  content: '';
+}
+
+.fa-map-pin:before {
+  content: '';
+}
+
+.fa-map-signs:before {
+  content: '';
+}
+
+.fa-map-o:before {
+  content: '';
+}
+
+.fa-map:before {
+  content: '';
+}
+
+.fa-commenting:before {
+  content: '';
+}
+
+.fa-commenting-o:before {
+  content: '';
+}
+
+.fa-houzz:before {
+  content: '';
+}
+
+.fa-vimeo:before {
+  content: '';
+}
+
+.fa-black-tie:before {
+  content: '';
+}
+
+.fa-fonticons:before {
+  content: '';
+}
+
+.fa-reddit-alien:before {
+  content: '';
+}
+
+.fa-edge:before {
+  content: '';
+}
+
+.fa-credit-card-alt:before {
+  content: '';
+}
+
+.fa-codiepie:before {
+  content: '';
+}
+
+.fa-modx:before {
+  content: '';
+}
+
+.fa-fort-awesome:before {
+  content: '';
+}
+
+.fa-usb:before {
+  content: '';
+}
+
+.fa-product-hunt:before {
+  content: '';
+}
+
+.fa-mixcloud:before {
+  content: '';
+}
+
+.fa-scribd:before {
+  content: '';
+}
+
+.fa-pause-circle:before {
+  content: '';
+}
+
+.fa-pause-circle-o:before {
+  content: '';
+}
+
+.fa-stop-circle:before {
+  content: '';
+}
+
+.fa-stop-circle-o:before {
+  content: '';
+}
+
+.fa-shopping-bag:before {
+  content: '';
+}
+
+.fa-shopping-basket:before {
+  content: '';
+}
+
+.fa-hashtag:before {
+  content: '';
+}
+
+.fa-bluetooth:before {
+  content: '';
+}
+
+.fa-bluetooth-b:before {
+  content: '';
+}
+
+.fa-percent:before {
+  content: '';
 }
 
 .bd-booticon {

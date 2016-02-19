@@ -25,7 +25,7 @@ describe('Test error.js routes', function () {
       chai.request(app)
         .get('/error/404')
         .end(function (err, res) {
-          expect(err).to.not.be.ok;
+          // expect(err).to.not.be.ok;
           expect(res).to.have.status(404);
           expect(res.type).to.equal('text/html');
           expect(res.text).to.contain('<span class="red">Page Not Found!</span>');
@@ -39,7 +39,7 @@ describe('Test error.js routes', function () {
       chai.request(app)
         .get('/error/403')
         .end(function (err, res) {
-          expect(err).to.not.be.ok;
+          // expect(err).to.not.be.ok;
           expect(res).to.have.status(403);
           expect(res.type).to.equal('text/html');
           expect(res.text).to.contain('<span class="red">That is not allowed!</span>');
@@ -53,7 +53,7 @@ describe('Test error.js routes', function () {
       chai.request(app)
         .get('/error/413')
         .end(function (err, res) {
-          expect(err).to.not.be.ok;
+          // expect(err).to.not.be.ok;
           expect(res).to.have.status(413);
           expect(res.type).to.equal('text/html');
           expect(res.text).to.contain('<span class="red">You sent too much data!</span>');
@@ -67,7 +67,7 @@ describe('Test error.js routes', function () {
       chai.request(app)
         .get('/error/500')
         .end(function (err, res) {
-          expect(err).to.not.be.ok;
+          // expect(err).to.not.be.ok;
           expect(res).to.have.status(500);
           expect(res.type).to.equal('text/html');
           expect(res.text).to.contain('<span class="red">Testing 1, 2, 3!</span>');

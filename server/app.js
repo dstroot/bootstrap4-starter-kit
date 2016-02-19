@@ -229,6 +229,7 @@ app.post('/csp', bodyParser.json(), function (req, res) {
   } else {
     debug('CSP Violation: ' + JSON.stringify(req.body));
   }
+
   res.status(204).end();
 });
 
@@ -296,68 +297,74 @@ app.use(helmet.frameguard('deny'));   // Prevent iframe clickjacking
 //
 //   NOTE: Set to report only during development.
 
-app.use(helmet.contentSecurityPolicy({
-  defaultSrc: [
-    "'self'"
-  ],
-  scriptSrc: [
-    "'self'",
-    "'unsafe-eval'",
-    "'unsafe-inline'",
-    'http://ajax.googleapis.com',
-    'https://ajax.googleapis.com',
-    'http://www.google-analytics.com',
-    'http://www.google-analytics.com/analytics.js',
-    'https://www.google-analytics.com'
-  ],
-  styleSrc: [
-    "'self'",
-    "'unsafe-inline'",
-    'http://fonts.googleapis.com',
-    'https://fonts.googleapis.com'
-  ],
-  fontSrc: [
-    "'self'",
-    'https://d1ir1l1v07ijd0.cloudfront.net/',  // Our CDN!
-    'http://fonts.googleapis.com',
-    'https://fonts.googleapis.com',
-    'http://fonts.gstatic.com',
-    'https://fonts.gstatic.com',
-    'htp://themes.googleusercontent.com',
-    'https://themes.googleusercontent.com'
-  ],
-  imgSrc: [
-    "'self'",
-    'data:',
-    'https://d1ir1l1v07ijd0.cloudfront.net/',  // Our CDN!
-    'http://chart.googleapis.com',
-    'https://chart.googleapis.com',
-    'http://www.google-analytics.com',
-    'https://www.google-analytics.com'
-  ],
-  mediaSrc: [
-    "'self'"
-  ],
-  connectSrc: [ // limit the origins (via XHR, WebSockets, and EventSource)
-    "'self'",
-    'ws://127.0.0.1:35729/livereload'
-  ],
-  objectSrc: [  // allows control over Flash and other plugins
-    "'none'"
-  ],
-  frameSrc: [   // origins that can be embedded as frames
-    "'none'"
-  ],
-  sandbox: [
-    'allow-same-origin',
-    'allow-forms',
-    'allow-scripts'
-  ],
-  reportUri: '/csp',
-  reportOnly: false,     // set to true if you *only* want to report errors
-  setAllHeaders: false,  // set to true if you want to set all headers
-  disableAndroid: false, // set to true if you want to disable Android (browsers can vary and be buggy)
-  safari5: false         // set to true if you want to force buggy CSP in Safari 5
+app.use(helmet.csp({
+  // Specify directives as normal.
+  directives: {
+    defaultSrc: [
+      "'self'",
+    ],
+    scriptSrc: [
+      "'self'",
+
+      // "'unsafe-eval'",
+      // "'unsafe-inline'",
+      'http://ajax.googleapis.com',
+      'https://ajax.googleapis.com',
+      'http://www.google-analytics.com',
+      'https://www.google-analytics.com'
+    ],
+    styleSrc: [
+      "'self'",
+
+      // "'unsafe-inline'",
+      'http://fonts.googleapis.com',
+      'https://fonts.googleapis.com',
+    ],
+    fontSrc: [
+      "'self'",
+      'http://fonts.googleapis.com',
+      'https://fonts.googleapis.com',
+      'http://fonts.gstatic.com',
+      'https://fonts.gstatic.com',
+      'htp://themes.googleusercontent.com',
+      'https://themes.googleusercontent.com'
+    ],
+    imgSrc: [
+      "'self'",
+      'data:',
+      'http://chart.googleapis.com',
+      'https://chart.googleapis.com',
+      'http://www.google-analytics.com',
+      'https://www.google-analytics.com',
+    ],
+    mediaSrc: [
+      "'self'"
+    ],
+    connectSrc: [
+      "'self'", // limit the origins (via XHR, WebSockets, and EventSource)
+      'ws://127.0.0.1:35729/livereload',
+    ],
+    frameSrc: [
+      "'none'"
+    ],
+    sandbox: [
+      'allow-same-origin',
+      'allow-forms',
+      'allow-scripts'
+    ],
+    objectSrc: [], // An empty array allows nothing through
+    reportUri: '/csp'
+  },
+
+  // Set to true if you only want browsers to report errors, not block them
+  reportOnly: false,
+
+  // Set to true if you want to blindly set all headers: Content-Security-Policy,
+  // X-WebKit-CSP, and X-Content-Security-Policy.
+  setAllHeaders: false,
+
+  // Set to true if you want to disable CSP on Android where it can be buggy.
+  disableAndroid: false
 }));
 
 // Keep csrf token and config available
@@ -408,6 +415,7 @@ app.use(function (err, req, res, next) {
   if (app.get('env') === 'production') {
     err.stack = null; // don't leak information in production!
   }
+
   res.render('error/error', {
     url: req.url,
     error: err

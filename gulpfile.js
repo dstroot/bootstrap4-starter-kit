@@ -15,6 +15,7 @@ var gulp        = require('gulp');
 var exec        = require('child_process').exec;
 var dotenv      = require('dotenv').load({ silent: true });
 var terminus    = require('terminus');
+
 // var stripLine   = require('gulp-strip-line');
 var runSequence = require('run-sequence');
 
@@ -71,6 +72,7 @@ var paths = {
     'public/lib/bootstrap/js/src/*.js'
   ],
   js: [
+
     // Enable/disable as needed but only turn on
     // .js that is needed on *every* page. No bloat!
     'public/lib/bootstrap/js/dist/util.js',
@@ -84,6 +86,7 @@ var paths = {
     'public/lib/bootstrap/js/dist/tab.js',
     'public/lib/bootstrap/js/dist/tooltip.js',
     'public/lib/bootstrap/js/dist/popover.js'
+
     // 'public/lib/fastclick/lib/fastclick.js'
   ],
   lint: [
@@ -130,7 +133,7 @@ gulp.task('styles', function () {
     .pipe(gulp.dest('./public/css'))        // Save CSS
     .pipe($.rename({ suffix: '.min' }))     // Add .min suffix
     .pipe($.csso())                         // Minify CSS
-    .pipe($.header(banner, { pkg : pkg }))  // Add banner
+    .pipe($.header(banner, { pkg: pkg }))  // Add banner
     .pipe($.size({ title: 'CSS:' }))        // What size are we at?
     .pipe(gulp.dest('./public/css'))        // Save minified CSS
     .pipe($.livereload());                  // Initiate a reload
@@ -144,8 +147,7 @@ gulp.task('transpile', function () {
   return gulp.src(paths.es6)                // Get es6 src files
     // .pipe(stripLine([/^(import|export)/g]))
     .pipe($.babel({
-      sourceMap: true,
-      modules: 'ignore'
+      presets: ['es2015']
     }))                                     // transpile to es5
     .pipe(gulp.dest('./public/lib/bootstrap/js/dist'));
 });
@@ -163,7 +165,7 @@ gulp.task('scripts', ['transpile'], function () {
     .pipe(gulp.dest('./public/js'))         // Save main.js here
     .pipe($.rename({ suffix: '.min' }))     // Add .min suffix
     .pipe($.uglify({ outSourceMap: true })) // Minify the .js
-    .pipe($.header(banner, { pkg : pkg }))  // Add banner
+    .pipe($.header(banner, { pkg: pkg }))  // Add banner
     .pipe($.size({ title: 'JS:' }))         // What size are we at?
     .pipe(gulp.dest('./public/js'))         // Save minified .js
     .pipe($.livereload());                  // Initiate a reload
@@ -244,7 +246,7 @@ gulp.task('nodemon', ['build'], function (cb) {
   $.nodemon({
     script: './server/bin/www',
     verbose: false,
-    env: { 'DEBUG': pkg.name + ':*' },
+    env: { DEBUG: pkg.name + ':*' },
     ext: 'js',
     ignore: [
       'gulpfile.js',
