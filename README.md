@@ -9,25 +9,25 @@
 [![Licensing][license-badge]][license-url]
 [![Issue tracking][issues-badge]][issues-url]
 
-[build-badge]: https://img.shields.io/travis/sbtpg/tpg-starter-kit.svg
+[build-badge]: https://img.shields.io/travis/dstroot/bootstrap4-starter-kit.svg
 [build-url]: https://travis-ci.org/sbtpg/tpg-starter-kit
 
 [coverage-badge]: https://img.shields.io/coveralls/sbtpg/tpg-starter-kit/master.svg
 [coverage-url]: https://coveralls.io/r/sbtpg/tpg-starter-kit?branch=master
 
-[dependency-badge]: https://img.shields.io/david/sbtpg/tpg-starter-kit.svg
+[dependency-badge]: https://img.shields.io/david/dstroot/bootstrap4-starter-kit.svg
 [dependency-url]: https://david-dm.org/sbtpg/tpg-starter-kit
 
-[dev-dep-badge]: https://img.shields.io/david/dev/sbtpg/tpg-starter-kit.svg
+[dev-dep-badge]: https://img.shields.io/david/dev/dstroot/bootstrap4-starter-kit.svg
 [dev-dep-url]: https://david-dm.org/sbtpg/tpg-starter-kit#info=devDependencies
 
 [license-badge]: https://img.shields.io/badge/license-MIT-blue.svg
 [license-url]: #license
 
-[release-badge]: https://img.shields.io/github/release/sbtpg/tpg-starter-kit.svg
+[release-badge]: https://img.shields.io/github/release/dstroot/bootstrap4-starter-kit.svg
 [release-url]: https://github.com/sbtpg/tpg-starter-kit/releases
 
-[issues-badge]: https://img.shields.io/github/issues/sbtpg/tpg-starter-kit.svg
+[issues-badge]: https://img.shields.io/github/issues/dstroot/bootstrap4-starter-kit.svg
 [issues-url]: https://github.com/sbtpg/tpg-starter-kit/issues
 
 
