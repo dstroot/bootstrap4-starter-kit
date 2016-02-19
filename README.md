@@ -10,25 +10,25 @@
 [![Issue tracking][issues-badge]][issues-url]
 
 [build-badge]: https://img.shields.io/travis/dstroot/bootstrap4-starter-kit.svg
-[build-url]: https://travis-ci.org/sbtpg/tpg-starter-kit
+[build-url]: https://travis-ci.org/dstroot/bootstrap4-starter-kit
 
-[coverage-badge]: https://img.shields.io/coveralls/sbtpg/tpg-starter-kit/master.svg
-[coverage-url]: https://coveralls.io/r/sbtpg/tpg-starter-kit?branch=master
+[coverage-badge]: https://img.shields.io/coveralls/dstroot/bootstrap4-starter-kit/master.svg
+[coverage-url]: https://coveralls.io/r/dstroot/bootstrap4-starter-kit?branch=master
 
 [dependency-badge]: https://img.shields.io/david/dstroot/bootstrap4-starter-kit.svg
-[dependency-url]: https://david-dm.org/sbtpg/tpg-starter-kit
+[dependency-url]: https://david-dm.org/dstroot/bootstrap4-starter-kit
 
 [dev-dep-badge]: https://img.shields.io/david/dev/dstroot/bootstrap4-starter-kit.svg
-[dev-dep-url]: https://david-dm.org/sbtpg/tpg-starter-kit#info=devDependencies
+[dev-dep-url]: https://david-dm.org/dstroot/bootstrap4-starter-kit#info=devDependencies
 
 [license-badge]: https://img.shields.io/badge/license-MIT-blue.svg
 [license-url]: #license
 
 [release-badge]: https://img.shields.io/github/release/dstroot/bootstrap4-starter-kit.svg
-[release-url]: https://github.com/sbtpg/tpg-starter-kit/releases
+[release-url]: https://github.com/dstroot/bootstrap4-starter-kit/releases
 
 [issues-badge]: https://img.shields.io/github/issues/dstroot/bootstrap4-starter-kit.svg
-[issues-url]: https://github.com/sbtpg/tpg-starter-kit/issues
+[issues-url]: https://github.com/dstroot/bootstrap4-starter-kit/issues
 
 
 This is a basic website template with all the bells and whistles.
