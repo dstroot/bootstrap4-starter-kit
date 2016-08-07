@@ -18,7 +18,7 @@
   "private": true,
   "dependencies": {
     "animate.css": "~3.3.0",
-    "bootstrap": "4.0.0-alpha.2",
+    "bootstrap": "4.0.0-alpha.3",
     "fastclick": "~1.0.6",
     "font-awesome": "~4.5.0"
   }

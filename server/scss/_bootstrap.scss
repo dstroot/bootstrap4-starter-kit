@@ -3,10 +3,11 @@
 // without changing any of the bootstrap source files (EASY TO UPDATE)
 
 // Core variables and mixins
+@import "../../public/lib/bootstrap/scss/custom";
 @import "../../public/lib/bootstrap/scss/variables";
 @import "../../public/lib/bootstrap/scss/mixins";
 
-// // Reset and dependencies
+// Reset and dependencies
 @import "../../public/lib/bootstrap/scss/normalize";
 @import "../../public/lib/bootstrap/scss/print";
 
@@ -20,7 +21,7 @@
 @import "../../public/lib/bootstrap/scss/forms";
 @import "../../public/lib/bootstrap/scss/buttons";
 
-// // Components
+// Components
 @import "../../public/lib/bootstrap/scss/animation";
 @import "../../public/lib/bootstrap/scss/dropdown";
 @import "../../public/lib/bootstrap/scss/button-group";
@@ -31,8 +32,7 @@
 @import "../../public/lib/bootstrap/scss/card";
 @import "../../public/lib/bootstrap/scss/breadcrumb";
 @import "../../public/lib/bootstrap/scss/pagination";
-@import "../../public/lib/bootstrap/scss/pager";
-@import "../../public/lib/bootstrap/scss/labels";
+@import "../../public/lib/bootstrap/scss/tags";
 @import "../../public/lib/bootstrap/scss/jumbotron";
 @import "../../public/lib/bootstrap/scss/alert";
 @import "../../public/lib/bootstrap/scss/progress";
@@ -49,5 +49,3 @@
 
 // Utility classes
 @import "../../public/lib/bootstrap/scss/utilities";
-@import "../../public/lib/bootstrap/scss/utilities-spacing";
-@import "../../public/lib/bootstrap/scss/utilities-responsive";
