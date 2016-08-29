@@ -3615,7 +3615,7 @@ var Popover = function ($) {
     function Popover() {
       _classCallCheck(this, Popover);
 
-      return _possibleConstructorReturn(this, Object.getPrototypeOf(Popover).apply(this, arguments));
+      return _possibleConstructorReturn(this, (Popover.__proto__ || Object.getPrototypeOf(Popover)).apply(this, arguments));
     }
 
     _createClass(Popover, [{
