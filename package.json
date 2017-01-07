@@ -30,7 +30,7 @@
     "send-coverage": "./node_modules/.bin/istanbul cover --report lcovonly ./node_modules/.bin/_mocha && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "engines": {
-    "node": "5.x.x"
+    "node": "7.x.x"
   },
   "dependencies": {
     "airbrake": "^0.3.8",
@@ -55,6 +55,7 @@
     "serve-favicon": "^2.3.0"
   },
   "devDependencies": {
+    "babel-plugin-transform-es2015-modules-strip": "^0.1.0",
     "babel-preset-es2015": "^6.14.0",
     "chai": "^3.5.0",
     "chai-http": "^2.0.1",

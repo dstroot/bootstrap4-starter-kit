@@ -1,11 +1,14 @@
-// NOTE: By copying the main bootstrap.scss file and importing
-// this one instead we can turn on/off components here
-// without changing any of the bootstrap source files (EASY TO UPDATE)
+/*!
+ * Bootstrap v4.0.0-alpha.6 (https://getbootstrap.com)
+ * Copyright 2011-2017 The Bootstrap Authors
+ * Copyright 2011-2017 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
 
 // Core variables and mixins
-@import "../../public/lib/bootstrap/scss/custom";
 @import "../../public/lib/bootstrap/scss/variables";
 @import "../../public/lib/bootstrap/scss/mixins";
+@import "../../public/lib/bootstrap/scss/custom";
 
 // Reset and dependencies
 @import "../../public/lib/bootstrap/scss/normalize";
@@ -22,7 +25,7 @@
 @import "../../public/lib/bootstrap/scss/buttons";
 
 // Components
-@import "../../public/lib/bootstrap/scss/animation";
+@import "../../public/lib/bootstrap/scss/transitions";
 @import "../../public/lib/bootstrap/scss/dropdown";
 @import "../../public/lib/bootstrap/scss/button-group";
 @import "../../public/lib/bootstrap/scss/input-group";
@@ -32,7 +35,7 @@
 @import "../../public/lib/bootstrap/scss/card";
 @import "../../public/lib/bootstrap/scss/breadcrumb";
 @import "../../public/lib/bootstrap/scss/pagination";
-@import "../../public/lib/bootstrap/scss/tags";
+@import "../../public/lib/bootstrap/scss/badge";
 @import "../../public/lib/bootstrap/scss/jumbotron";
 @import "../../public/lib/bootstrap/scss/alert";
 @import "../../public/lib/bootstrap/scss/progress";
