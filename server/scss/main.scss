@@ -19,44 +19,16 @@
 // $enable-flex:               false !default;
 // $enable-rounded:            true !default;
 // $enable-shadows:            false !default;
-$enable-gradients:          true;
-$enable-transitions:        true;
+// $enable-gradients:          true;
+// $enable-transitions:        true;
 // $enable-hover-media-query:  false !default;
 
 // Font
 $font-family-sans-serif:  "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
 @import "bootstrap";
+@import "docs";
 
 // Load font awesome
 $fa-font-path:        "../lib/font-awesome/fonts";
 @import "../../public/lib/font-awesome/scss/font-awesome";
-
-// Local docs variables
-$bd-purple:         #563d7c;
-$bd-purple-bright:  lighten(saturate($bd-purple, 5%), 15%);
-$bd-purple-light:   #cdbfe3;
-$bd-graphite:       #2a2730;
-$bd-graphite-light: lighten($bd-graphite, 40%);
-$bd-yellow:         #ffe484;
-$bd-danger:         #d9534f;
-$bd-warning:        #f0ad4e;
-$bd-info:           #5bc0de;
-
-// Load docs components
-@import "booticon";
-// @import "nav";
-@import "masthead";
-@import "featurettes";
-@import "featured-sites";
-@import "page-header";
-@import "sidebar";
-@import "footer";
-@import "buttons";
-@import "callouts";
-@import "team";
-@import "brand";
-
-// Load docs dependencies
-@import "syntax";
-@import "anchor";
