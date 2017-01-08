@@ -235,7 +235,7 @@ app.post('/csp', bodyParser.json(), function (req, res) {
 
 // Setup the view engine (jade)
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 
 // Compress response data with gzip / deflate.
 // This middleware should be placed "high" within
@@ -307,11 +307,12 @@ app.use(helmet.csp({
       "'self'",
 
       // "'unsafe-eval'",
-      // "'unsafe-inline'",
+      "'unsafe-inline'",
       'http://ajax.googleapis.com',
       'https://ajax.googleapis.com',
       'http://www.google-analytics.com',
-      'https://www.google-analytics.com'
+      'https://www.google-analytics.com',
+      'https://code.jquery.com'
     ],
     styleSrc: [
       "'self'",
