@@ -28,7 +28,7 @@ describe('Test index.js routes', function () {
           expect(err).to.not.exist;
           expect(res).to.have.status(200);
           expect(res.type).to.equal('text/html');
-          expect(res.text).to.contain('Bootstrap is the most popular HTML, CSS, and JS framework in the world for building responsive, mobile-first projects on the web.');
+          expect(res.text).to.contain("mobile-first projects on the web with the world's most popular front-end component library");
           done();
         });
     });
