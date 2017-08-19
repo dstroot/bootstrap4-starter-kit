@@ -149,7 +149,7 @@ if (app.get('env') === 'development') {
   // Turn off caching in development
   // This sets the Cache-Control HTTP header to no-store, no-cache,
   // which tells browsers not to cache anything.
-  app.use(helmet.nocache());
+  app.use(helmet.noCache());
 }
 
 if (app.get('env') === 'production') {
