@@ -37,6 +37,40 @@
   border: 1px solid rgba($bd-purple, .15);
 }
 
+// Grid mixins
+.example-container {
+  width: 800px;
+  @include make-container();
+}
+
+.example-row {
+  @include make-row();
+}
+
+.example-content-main {
+  @include make-col-ready();
+
+  @include media-breakpoint-up(sm) {
+    @include make-col(6);
+  }
+
+  @include media-breakpoint-up(lg) {
+    @include make-col(8);
+  }
+}
+
+.example-content-secondary {
+  @include make-col-ready();
+
+  @include media-breakpoint-up(sm) {
+    @include make-col(6);
+  }
+
+  @include media-breakpoint-up(lg) {
+    @include make-col(4);
+  }
+}
+
 
 //
 // Container illustrations
@@ -52,7 +86,7 @@
 .bd-example-container-header {
   height: 3rem;
   margin-bottom: .5rem;
-  background-color: lighten($brand-primary, 50%);
+  background-color: lighten($blue, 50%);
   border-radius: .25rem;
 }
 
@@ -60,7 +94,7 @@
   float: right;
   width: 4rem;
   height: 8rem;
-  background-color: lighten($brand-warning, 25%);
+  background-color: lighten($blue, 25%);
   border-radius: .25rem;
 }
 
@@ -83,7 +117,7 @@
 .bd-example {
   position: relative;
   padding: 1rem;
-  margin: 1rem -1rem;
+  margin: 1rem (-$grid-gutter-width / 2);
   border: solid #f7f7f9;
   border-width: .2rem 0 0;
   @include clearfix();
@@ -251,6 +285,19 @@
   }
 }
 
+.modal {
+  z-index: 1072;
+
+  .tooltip, .popover {
+    z-index: 1073;
+  }
+}
+
+.modal-backdrop {
+  z-index: 1071;
+}
+
+
 // Example tabbable tabs
 .bd-example-tabs .nav-tabs {
   margin-bottom: 1rem;
@@ -264,6 +311,18 @@
   margin-top: .25rem;
   margin-bottom: .25rem;
 }
+.bs-tooltip-top-docs,
+.bs-tooltip-bottom-docs {
+  .arrow {
+    left: 50%;
+  }
+}
+.bs-tooltip-right-docs,
+.bs-tooltip-left-docs {
+  .arrow {
+    top: 50%;
+  }
+}
 
 // Popovers
 .bd-example-popover-static {
@@ -276,6 +335,18 @@
   float: left;
   width: 260px;
   margin: 1.25rem;
+}
+.bs-popover-top-docs,
+.bs-popover-bottom-docs {
+  .arrow {
+    left: 50%;
+  }
+}
+.bs-popover-right-docs,
+.bs-popover-left-docs {
+  .arrow {
+    top: 50%;
+  }
 }
 
 // Tooltips
@@ -298,28 +369,17 @@
   overflow: auto;
 }
 
-// Helpers
-.bd-example > {
-  .bg-primary,
-  .bg-success,
-  .bg-info,
-  .bg-warning,
-  .bg-danger,
-  .bg-inverse,
-  .bg-faded {
-    &:not(.navbar) {
-      padding: .5rem;
-      margin-top: .5rem;
-      margin-bottom: .5rem;
-    }
-  }
+.scrollspy-example-2 {
+  position: relative;
+  height: 350px;
+  overflow: auto;
 }
 
 .bd-example-border-utils {
-  [class^="border-"] {
+  [class^="border"] {
     display: inline-block;
-    width: 6rem;
-    height: 6rem;
+    width: 5rem;
+    height: 5rem;
     margin: .25rem;
     background-color: #f5f5f5;
     border: 1px solid;
@@ -332,16 +392,26 @@
 
 .highlight {
   padding: 1rem;
-  margin: 1rem (-$grid-gutter-width-base / 2);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   background-color: #f7f7f9;
   -ms-overflow-style: -ms-autohiding-scrollbar;
 
   @include media-breakpoint-up(sm) {
     padding: 1.5rem;
+  }
+}
+
+.bd-content .highlight {
+  margin-right: (-$grid-gutter-width / 2);
+  margin-left: (-$grid-gutter-width / 2);
+
+  @include media-breakpoint-up(sm) {
     margin-right: 0;
     margin-left: 0;
   }
 }
+
 .highlight pre {
   padding: 0;
   margin-top: 0;
@@ -351,5 +421,5 @@
 }
 .highlight pre code {
   font-size: inherit;
-  color: $gray-dark; // Effectively the base text color
+  color: $gray-900; // Effectively the base text color
 }

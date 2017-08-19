@@ -35,16 +35,16 @@ var banner = [
 
 var jqueryCheck = [
   'if (typeof jQuery === \'undefined\') {',
-  '  throw new Error(\'Bootstrap\\\'s JavaScript requires jQuery\')',
+  '  throw new Error(\'Bootstrap\\\'s JavaScript requires jQuery\');',
   '}',
   ''
 ].join('\n');
 
 var jqueryVersionCheck = [
   '+function ($) {',
-  '  var version = $.fn.jquery.split(\' \')[0].split(\'.\')',
+  '  var version = $.fn.jquery.split(\' \')[0].split(\'.\');',
   '  if ((version[0] < 2 && version[1] < 9) || (version[0] == 1 && version[1] == 9 && version[2] < 1)) {',
-  '    throw new Error(\'Bootstrap\\\'s JavaScript requires jQuery version 1.9.1 or higher\')',
+  '    throw new Error(\'Bootstrap\\\'s JavaScript requires jQuery version 1.9.1 or higher\');',
   '  }',
   '}(jQuery);',
   '',
@@ -86,8 +86,7 @@ var paths = {
     'public/lib/bootstrap/js/dist/tab.js',
     'public/lib/bootstrap/js/dist/tooltip.js',
     'public/lib/bootstrap/js/dist/popover.js'
-
-    // 'public/lib/fastclick/lib/fastclick.js'
+    // 'public/lib/app/app.js'
   ],
   lint: [
     'server/bin/**/*.js',
@@ -133,7 +132,7 @@ gulp.task('styles', function () {
     .pipe(gulp.dest('./public/css'))        // Save CSS
     .pipe($.rename({ suffix: '.min' }))     // Add .min suffix
     .pipe($.csso())                         // Minify CSS
-    .pipe($.header(banner, { pkg: pkg }))  // Add banner
+    .pipe($.header(banner, { pkg: pkg }))   // Add banner
     .pipe($.size({ title: 'CSS:' }))        // What size are we at?
     .pipe(gulp.dest('./public/css'))        // Save minified CSS
     .pipe($.livereload());                  // Initiate a reload

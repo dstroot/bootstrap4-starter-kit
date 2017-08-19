@@ -1,21 +1,18 @@
 /*!
- * Bootstrap v4.0.0-alpha.6 (https://getbootstrap.com)
+ * Bootstrap v4.0.0-beta (https://getbootstrap.com)
  * Copyright 2011-2017 The Bootstrap Authors
  * Copyright 2011-2017 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
 // Core variables and mixins
+@import "../../public/lib/bootstrap/scss/functions";
 @import "../../public/lib/bootstrap/scss/variables";
 @import "../../public/lib/bootstrap/scss/mixins";
-@import "../../public/lib/bootstrap/scss/custom";
-
-// Reset and dependencies
-@import "../../public/lib/bootstrap/scss/normalize";
 @import "../../public/lib/bootstrap/scss/print";
+@import "../../public/lib/bootstrap/scss/reboot";
 
 // Core CSS
-@import "../../public/lib/bootstrap/scss/reboot";
 @import "../../public/lib/bootstrap/scss/type";
 @import "../../public/lib/bootstrap/scss/images";
 @import "../../public/lib/bootstrap/scss/code";
@@ -41,7 +38,6 @@
 @import "../../public/lib/bootstrap/scss/progress";
 @import "../../public/lib/bootstrap/scss/media";
 @import "../../public/lib/bootstrap/scss/list-group";
-@import "../../public/lib/bootstrap/scss/responsive-embed";
 @import "../../public/lib/bootstrap/scss/close";
 
 // Components w/ JavaScript
@@ -50,5 +46,5 @@
 @import "../../public/lib/bootstrap/scss/popover";
 @import "../../public/lib/bootstrap/scss/carousel";
 
-// Utility classes
+// Utilities
 @import "../../public/lib/bootstrap/scss/utilities";

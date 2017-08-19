@@ -1,22 +1,45 @@
 //- Behavioral Meta Data
 meta(charset='utf-8')
 meta(http-equiv='X-UA-Compatible', content='IE=edge')
-meta(name='viewport', content='width=device-width, initial-scale=1')  
+meta(name='viewport', content='width=device-width, initial-scale=1')
 //- The above ^^^ three tags MUST come first
 meta(name='x-csrf-token', content=_csrf)
 meta(name='apple-mobile-web-app-capable', content='yes')
+
 //- SEO Meta Data
 block head
 meta(name='author', content='#{author}')
 meta(name='description', content='#{description}')
 meta(name='keywords', content='#{keywords}')
+
+//- Twitter
+meta(name='twitter:site', content='@getbootstrap')
+meta(name='twitter:creator', content='@getbootstrap')
+meta(name='twitter:card', content='summary_large_image')
+meta(name='twitter:title', content='Bootstrap')
+meta(name='twitter:description', content='The most popular HTML, CSS, and JS library in the world.')
+meta(name='twitter:image', content='http://getbootstrap.com/assets/brand/bootstrap-social.png')
+
+//- Facebook
+meta(property='og:url', content='http://getbootstrap.com')
+meta(property='og:title', content='Bootstrap')
+meta(property='og:description', content='The most popular HTML, CSS, and JS library in the world.')
+meta(property='og:image', content='http://getbootstrap.com/assets/brand/bootstrap-social.png')
+meta(property='og:image:secure_url', content='http://getbootstrap.com/assets/brand/bootstrap-social.png')
+meta(property='og:image:type', content='image/png')
+meta(property='og:image:width', content='1200')
+meta(property='og:image:height', content='630')
+
 //- Favicon
 link(id="favicon", rel="shortcut icon" href="https://d1ir1l1v07ijd0.cloudfront.net/img/ico/favicon.png" sizes="16x16 32x32 48x48" type="image/png")
+
 //- Styles
 link(rel='stylesheet', href='/css/main.min.css')
 block styles
+
 //- Fonts
 link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,500,700')
+
 //- Google Analytics
 if ga
   script.

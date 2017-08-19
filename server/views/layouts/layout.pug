@@ -2,11 +2,12 @@ doctype html
 html(lang="en")
   head
     include ../partials/head
-  body.bd-home
-    include ../partials/navigation
-    include ../partials/messages
+  body
+    .wrap
+      include ../partials/navigation
+      include ../partials/messages
 
-    block content
+      block content
 
     include ../partials/footer
     include ../partials/scripts
