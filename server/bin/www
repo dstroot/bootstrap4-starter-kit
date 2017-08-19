@@ -138,6 +138,7 @@ function onListening() {
     debug(pkg.name.red.bold + ' needs Node or io.js version '.red.bold + engine.red.bold);
     process.exit(0);
   }
+
   // Exit cleanly on Ctrl+C
   process.on('SIGINT', function () {
     console.log('\n');

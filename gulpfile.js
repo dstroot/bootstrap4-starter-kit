@@ -9,7 +9,7 @@
  */
 
 var $           = require('gulp-load-plugins')({ lazy: true });
-var psi         = require('psi');
+var os          = require('os');
 var del         = require('del');
 var gulp        = require('gulp');
 var exec        = require('child_process').exec;
@@ -86,6 +86,7 @@ var paths = {
     'public/lib/bootstrap/js/dist/tab.js',
     'public/lib/bootstrap/js/dist/tooltip.js',
     'public/lib/bootstrap/js/dist/popover.js'
+
     // 'public/lib/app/app.js'
   ],
   lint: [
@@ -146,7 +147,18 @@ gulp.task('transpile', function () {
   return gulp.src(paths.es6)                // Get es6 src files
     // .pipe(stripLine([/^(import|export)/g]))
     .pipe($.babel({
-      presets: ['es2015']
+      presets: [
+        [
+          'es2015',
+          {
+            loose: true,
+            modules: false
+          }
+        ]
+      ],
+      plugins: [
+        'transform-es2015-modules-strip'
+      ]
     }))                                     // transpile to es5
     .pipe(gulp.dest('./public/lib/bootstrap/js/dist'));
 });
@@ -274,9 +286,13 @@ gulp.task('nodemon', ['build'], function (cb) {
  * Open the browser
  */
 
+var browser = os.platform() === 'linux' ? 'google-chrome' : (
+  os.platform() === 'darwin' ? 'google chrome' : (
+  os.platform() === 'win32' ? 'chrome' : 'firefox'));
+
 gulp.task('open', ['nodemon'], function () {
   gulp.src('')
-  .pipe($.open({ app: 'google chrome', uri: 'http://localhost:3000' }));
+  .pipe($.open({ app: browser, uri: 'http://localhost:3000' }));
 });
 
 
@@ -290,33 +306,3 @@ gulp.task('default', ['open'], function () {
   gulp.watch(paths.lint, ['lint', 'jscs']);
   gulp.watch('server/views/**/*.jade').on('change', $.livereload.changed);
 });
-
-/**
- * Run PageSpeed Insights
- */
-
-// When using this module for a production-level build process,
-// registering for an API key from the Google Developer Console
-// is recommended.
-
-var site = 'turbotaxpayments.com';
-
-gulp.task('mobile', function (cb) {
-  // output a formatted report to the terminal
-  psi.output(site, {
-    strategy: 'mobile',
-    locale: 'en_US',
-    threshold: 70
-  }, cb);
-});
-
-gulp.task('desktop', ['mobile'], function (cb) {
-  // output a formatted report to the terminal
-  psi.output(site, {
-    strategy: 'desktop',
-    locale: 'en_US',
-    threshold: 80
-  }, cb);
-});
-
-gulp.task('pagespeed', ['desktop']);

@@ -24,9 +24,9 @@ var bodyParser = require('body-parser');        // https://github.com/expressjs/
 // Third Party Modules
 var flash      = require('express-flash');      // https://npmjs.org/package/express-flash
 var helmet     = require('helmet');             // https://github.com/evilpacket/helmet
-var dotenv     = require('dotenv').load({ silent: true }); // https://www.npmjs.com/package/dotenv
+var dotenv     = require('dotenv').config();    // https://www.npmjs.com/package/dotenv
 var enforce    = require('express-sslify');     // https://github.com/florianheinemann/express-sslify
-var airbrake   = require('airbrake').createClient(process.env.AIRBRAKE);
+// var airbrake   = require('airbrake').createClient(process.env.AIRBRAKE);
 
 /**
  * Constants
@@ -219,21 +219,22 @@ if (app.get('env') === 'production') {
 // Browsers will post violations to this route
 // https://mathiasbynens.be/notes/csp-reports
 app.post('/csp', bodyParser.json(), function (req, res) {
+  var err = new Error('CSP Violation: ' + JSON.stringify(req.body));
   if (app.get('env') === 'production') {
-    var err = new Error('CSP Violation: ' + JSON.stringify(req.body));
-    airbrake.notify(err, function (err, url) {
-      if (err) {
-        throw err;
-      }
-    });
+    // airbrake.notify(err, function (err, url) {
+    //   if (err) {
+    //     throw err;
+    //   }
+    // });
+    debug(err);
   } else {
-    debug('CSP Violation: ' + JSON.stringify(req.body));
+    debug(err);
   }
 
   res.status(204).end();
 });
 
-// Setup the view engine (jade)
+// Setup the view engine (pug)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
@@ -285,8 +286,8 @@ app.use(morgan('combined', { stream: logFile }));
 // Security Settings
 app.disable('x-powered-by');          // Don't advertise our server type
 app.use(csrf());                      // Prevent Cross-Site Request Forgery
-app.use(helmet.ienoopen());           // X-Download-Options for IE8+
-app.use(helmet.nosniff());            // Sets X-Content-Type-Options to nosniff
+app.use(helmet.ieNoOpen());           // X-Download-Options for IE8+
+app.use(helmet.noSniff());            // Sets X-Content-Type-Options to nosniff
 app.use(helmet.xssFilter());          // sets the X-XSS-Protection header
 app.use(helmet.frameguard('deny'));   // Prevent iframe clickjacking
 
@@ -297,7 +298,7 @@ app.use(helmet.frameguard('deny'));   // Prevent iframe clickjacking
 //
 //   NOTE: Set to report only during development.
 
-app.use(helmet.csp({
+app.use(helmet.contentSecurityPolicy({
   // Specify directives as normal.
   directives: {
     defaultSrc: [
@@ -354,7 +355,7 @@ app.use(helmet.csp({
       'allow-forms',
       'allow-scripts'
     ],
-    objectSrc: [], // An empty array allows nothing through
+    objectSrc: ["'none'"], // An empty array allows nothing through
     reportUri: '/csp'
   },
 
@@ -406,9 +407,9 @@ app.use(function (req, res, next) {
 });
 
 // Send errors to airbrake in production (dev does not send anyway)
-if (app.get('env') === 'production') {
-  app.use(airbrake.expressHandler());
-}
+// if (app.get('env') === 'production') {
+//  app.use(airbrake.expressHandler());
+// }
 
 // Main error Handler
 app.use(function (err, req, res, next) {
