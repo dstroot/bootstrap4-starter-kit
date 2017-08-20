@@ -31,13 +31,11 @@ There is little difference between BDD and TDD. BDD is TDD done right. TDD done 
 
  */
 
-// Set enviroment
 process.env.NODE_ENV = 'test';
-// process.env.DEBUG = pkg.name + ':*';
 
 // Test environment
 describe('Test app environment', function () {
-  it ('should be "test"', function (done) {
+  it('should be "test"', function (done) {
 
     // Let's use examples for all styles - we will see
     // all tests pass and are functionally equivalent

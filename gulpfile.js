@@ -14,7 +14,6 @@ var del         = require('del');
 var gulp        = require('gulp');
 var exec        = require('child_process').exec;
 var dotenv      = require('dotenv').load({ silent: true });
-var terminus    = require('terminus');
 
 // var stripLine   = require('gulp-strip-line');
 var runSequence = require('run-sequence');
@@ -129,7 +128,7 @@ gulp.task('styles', function () {
     }))
     .pipe($.csscomb())                      // Coding style formatter for CSS
     .pipe($.csslint('.csslintrc'))          // Lint CSS
-    .pipe($.csslint.reporter())             // Report issues
+    .pipe($.csslint.formatter(require('csslint-stylish')))             // Report issues
     .pipe(gulp.dest('./public/css'))        // Save CSS
     .pipe($.rename({ suffix: '.min' }))     // Add .min suffix
     .pipe($.csso())                         // Minify CSS
@@ -168,6 +167,12 @@ gulp.task('transpile', function () {
  */
 
 gulp.task('scripts', ['transpile'], function () {
+  function createErrorHandler(name) {
+    return function (err) {
+      console.error('Error from ' + name + ' in scripts task', err.toString());
+    };
+  }
+
   return gulp.src(paths.js)                 // Read .js files
     .pipe($.concat('main.js'))              // Concatenate .js files
     .pipe($.header(jqueryVersionCheck))     // Add banner
@@ -175,8 +180,9 @@ gulp.task('scripts', ['transpile'], function () {
     .pipe($.footer(footer))                 // Add banner
     .pipe(gulp.dest('./public/js'))         // Save main.js here
     .pipe($.rename({ suffix: '.min' }))     // Add .min suffix
-    .pipe($.uglify({ outSourceMap: true })) // Minify the .js
-    .pipe($.header(banner, { pkg: pkg }))  // Add banner
+    .pipe($.uglify())                       // Minify the .js
+    .on('error', createErrorHandler('uglify'))
+    .pipe($.header(banner, { pkg: pkg }))   // Add banner
     .pipe($.size({ title: 'JS:' }))         // What size are we at?
     .pipe(gulp.dest('./public/js'))         // Save minified .js
     .pipe($.livereload());                  // Initiate a reload
@@ -198,12 +204,8 @@ gulp.task('lint', function () {
 
 gulp.task('jscs', function () {
   return gulp.src(paths.lint)               // Read .js files
-    .pipe($.jscs())                         // jscs .js files
-    .on('error', function (e) {
-      $.util.log(e.message);
-      $.jscs().end();
-    })
-    .pipe(terminus.devnull({ objectMode: true }));
+    .pipe($.jscs({ fix: true }))
+    .pipe($.jscs.reporter());
 });
 
 /**

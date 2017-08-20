@@ -10,6 +10,7 @@
   "important": false,
   "known-properties": false,
   "outline-none": false,
+  "order-alphabetical": false,
   "qualified-headings": false,
   "regex-selectors": false,
   "shorthand": false,
