@@ -66,6 +66,8 @@ var paths = {
     'public/lib/bootstrap/js/dist/**/*.js.map',
     'public/css/**/*.css',
     'public/css/**/*.min.css',
+    'public/css/**/*.map',
+    'public/css/**/*.min.map',
   ],
   es6: [
     'public/lib/bootstrap/js/src/*.js'
@@ -120,21 +122,23 @@ gulp.task('clean', function () {
  */
 
 gulp.task('styles', function () {
+  var autoprefixer = require('autoprefixer');
+  var cssnano      = require('cssnano');
+  var plugins      = [
+    autoprefixer({ browsers: ['last 2 versions'] }),
+    cssnano({ safe: true })
+  ];
+
   return gulp.src(paths.scss)               // Read in scss files
-    .pipe($.sass().on('error', $.sass.logError)) // Compile scss files
-    .pipe($.autoprefixer({                  // Autoprefix for target browsers
-      browsers: ['last 2 versions'],
-      cascade: true
-    }))
-    .pipe($.csscomb())                      // Coding style formatter for CSS
-    .pipe($.csslint('.csslintrc'))          // Lint CSS
-    .pipe($.csslint.formatter(require('csslint-stylish')))             // Report issues
-    .pipe(gulp.dest('./public/css'))        // Save CSS
+    .pipe($.sass()
+    .on('error', $.sass.logError))          // Compile scss files
+    // .pipe($.header(banner, { pkg: pkg }))   // Add banner
     .pipe($.rename({ suffix: '.min' }))     // Add .min suffix
-    .pipe($.csso())                         // Minify CSS
-    .pipe($.header(banner, { pkg: pkg }))   // Add banner
+    .pipe($.sourcemaps.init())
+    .pipe($.postcss(plugins))               // Process CSS
+    .pipe($.sourcemaps.write('.'))
+    .pipe(gulp.dest('./public/css'))        // Save CSS here
     .pipe($.size({ title: 'CSS:' }))        // What size are we at?
-    .pipe(gulp.dest('./public/css'))        // Save minified CSS
     .pipe($.livereload());                  // Initiate a reload
 });
 
