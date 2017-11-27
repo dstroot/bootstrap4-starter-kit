@@ -1,4 +1,5 @@
 'use strict';
+/*jshint esversion: 6 */
 /* exported dotenv */
 
 /**
@@ -6,44 +7,43 @@
  */
 
 // Node Modules
-var path       = require('path');               // http://nodejs.org/docs/v0.10.25/api/path.html
+const path       = require('path');               // http://nodejs.org/docs/v0.10.25/api/path.html
 
 // Configuration and debugging
-var pkg        = require('../package.json');
-var debug      = require('debug')(pkg.name + ':app'); // name of this .js file
+const pkg        = require('../package.json');
+const debug      = require('debug')(pkg.name + ':app'); // name of this .js file
 
 // Express 4.x Modules
-var csrf       = require('csurf');              // https://github.com/expressjs/csurf
-var morgan     = require('morgan');             // https://github.com/expressjs/morgan
-var express    = require('express');            // https://npmjs.org/package/express
-// var favicon    = require('serve-favicon');      // https://github.com/expressjs/favicon
-var session    = require('express-session');    // https://github.com/expressjs/session
-var compress   = require('compression');        // https://github.com/expressjs/compression
-var bodyParser = require('body-parser');        // https://github.com/expressjs/body-parser
+const csrf       = require('csurf');              // https://github.com/expressjs/csurf
+const morgan     = require('morgan');             // https://github.com/expressjs/morgan
+const express    = require('express');            // https://npmjs.org/package/express
+const favicon    = require('serve-favicon');      // https://github.com/expressjs/favicon
+const session    = require('express-session');    // https://github.com/expressjs/session
+const compress   = require('compression');        // https://github.com/expressjs/compression
+const bodyParser = require('body-parser');        // https://github.com/expressjs/body-parser
 
 // Third Party Modules
-var flash      = require('express-flash');      // https://npmjs.org/package/express-flash
-var helmet     = require('helmet');             // https://github.com/evilpacket/helmet
-var dotenv     = require('dotenv').config();    // https://www.npmjs.com/package/dotenv
-var enforce    = require('express-sslify');     // https://github.com/florianheinemann/express-sslify
-// var airbrake   = require('airbrake').createClient(process.env.AIRBRAKE);
+const flash      = require('express-flash');      // https://npmjs.org/package/express-flash
+const helmet     = require('helmet');             // https://github.com/evilpacket/helmet
+const dotenv     = require('dotenv').config();    // https://www.npmjs.com/package/dotenv
+const enforce    = require('express-sslify');     // https://github.com/florianheinemann/express-sslify
 
 /**
  * Constants
  */
 
 // time in milliseconds...
-var minute  = 1000 * 60;     //      60000
-var hour    = (minute * 60); //    3600000
-var day     = (hour * 24);   //   86400000
-var week    = (day * 7);     //  604800000
-var month   = (day * 30);    // 2419200000
+const minute  = 1000 * 60;     //      60000
+const hour    = (minute * 60); //    3600000
+const day     = (hour * 24);   //   86400000
+const week    = (day * 7);     //  604800000
+const month   = (day * 30);    // 2419200000
 
 /**
  * Session Configuration
  */
 
-var mySession = {
+const mySession = {
   name: 'sid',    // Generic - don't leak information
   proxy: false,   // Trust the reverse proxy for HTTPS/SSL
   resave: false,  // Forces session to be saved even when unmodified
@@ -103,7 +103,7 @@ mySession.cookie = {
  * Create Express App
  */
 
-var app = express();
+const app = express();
 
 /**
  * Express Configuration and Setup
@@ -213,7 +213,7 @@ if (app.get('env') === 'production') {
 // Favicon - This middleware should come very early in your stack
 // (maybe even first) to avoid processing any other middleware
 // if we already know the request is for favicon.ico
-// app.use(favicon(path.join(__dirname, '../public/favicon.ico')));
+app.use(favicon(path.join(__dirname, '../public/favicon.ico')));
 
 // Report CSP violations (also high the middleware stack)
 // Browsers will post violations to this route
@@ -221,16 +221,10 @@ if (app.get('env') === 'production') {
 app.post('/csp', bodyParser.json(), function (req, res) {
   var err = new Error('CSP Violation: ' + JSON.stringify(req.body));
   if (app.get('env') === 'production') {
-    // airbrake.notify(err, function (err, url) {
-    //   if (err) {
-    //     throw err;
-    //   }
-    // });
     debug(err);
   } else {
     debug(err);
   }
-
   res.status(204).end();
 });
 
@@ -405,11 +399,6 @@ app.use(function (req, res, next) {
   err.status = 404;
   next(err);
 });
-
-// Send errors to airbrake in production (dev does not send anyway)
-// if (app.get('env') === 'production') {
-//  app.use(airbrake.expressHandler());
-// }
 
 // Main error Handler
 app.use(function (err, req, res, next) {

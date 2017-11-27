@@ -126,7 +126,9 @@ gulp.task('styles', function () {
   var cssnano      = require('cssnano');
   var plugins      = [
     autoprefixer({ browsers: ['last 2 versions'] }),
-    cssnano({ safe: true })
+    cssnano({
+        preset: 'default',
+    })
   ];
 
   return gulp.src(paths.scss)               // Read in scss files
@@ -152,7 +154,7 @@ gulp.task('transpile', function () {
     .pipe($.babel({
       presets: [
         [
-          'es2015',
+          'env',
           {
             loose: true,
             modules: false
