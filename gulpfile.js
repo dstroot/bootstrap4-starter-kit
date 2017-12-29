@@ -97,7 +97,7 @@ const paths = {
     // 'public/lib/app/app.js'
   ],
   lint: [
-    // 'server/bin/**/*.js',
+    'server/bin/*',
     // 'test/**/*.js',
     // 'server/routes/**/*.js',
     // 'server/models/**/*.js',
@@ -157,7 +157,7 @@ gulp.task('styles', () => {
   return gulp.src(paths.scss)               // Read in scss files
     .pipe($.sass()
       .on('error', $.sass.logError))        // Compile scss files
-    // .pipe($.header(banner, { pkg: pkg }))   // Add banner
+    .pipe($.header(banner, { pkg }))        // Add banner
     .pipe($.rename({ suffix: '.min' }))     // Add .min suffix
     .pipe($.size({ title: 'CSS:' }))        // What size are we at?
     .pipe($.sourcemaps.init())
