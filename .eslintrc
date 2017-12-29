@@ -1,0 +1,23 @@
+{
+  "extends": "airbnb-base",
+  "rules": {
+    "no-alert": 0,
+    "no-bitwise": 0,
+    "camelcase": 1,
+    "curly": 1,
+    "eqeqeq": 0,
+    "no-eq-null": 0,
+    "guard-for-in": 1,
+    "no-empty": 1,
+    "no-multi-spaces": 0,
+    "no-console": 0,
+    "arrow-body-style": ["error", "always"],
+    "use-isnan": ["error"]
+  },
+  "globals": {
+    "$": false
+  },
+  "env": {
+    "node": true
+  }
+}
