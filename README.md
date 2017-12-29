@@ -37,7 +37,7 @@ This is a basic website template with all the bells and whistles.
 
 * [Bootstrap 4](http://getbootstrap.com/)
 * [Font Awesome 5](https://fontawesome.com/)
-* []()
+* [ESLint](https://eslint.org)
 
 
 ## Quick Start
