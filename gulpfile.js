@@ -1,6 +1,4 @@
-/* exported dotenv */
-
-// Install: you must install gulp both globally *and* locally.
+// NOTE: you must install gulp both globally *and* locally.
 // Make sure you `$ npm install -g gulp`
 
 /**
@@ -101,7 +99,7 @@ const paths = {
     // 'test/**/*.js',
     // 'server/routes/**/*.js',
     // 'server/models/**/*.js',
-    // 'server/app.js',
+    'server/app.js',
     // 'server/config.js',
     'gulpfile.js',
   ],
