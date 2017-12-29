@@ -7,190 +7,119 @@ block styles
 
 block content
   .container
-    h1.text-uppercase Income Tax Refund Status
-    p 
-      | To find out when your refund is expected to fund please visit the IRS website at 
+    h1.text-uppercase Your Refund Status
+    p
+      | To find out when your refund is expected to fund please visit the IRS website at&nbsp;
       a(href='http://www.irs.gov') www.irs.gov
-      | &nbsp; and click on "Get your refund status". You can also call the IRS at (800) 829-1954.  We will process your refund as soon as it is received.
+      |  and click on "Get your refund status" or call the IRS at (800) 829-1954.  We will pay your refund as soon as it is received.
     .row
       .col-md-12
-        h4.text-uppercase Funding
-        .table-responsive
-          table.table.bg-gray-lighter
-            tr
-              th.text-uppercase Funding Source
-              th.text-uppercase Expected Amount
-              th.text-uppercase Received Amount
-            tr
-              td Federal Income Tax
-              td $6,345.00
-              td $6,127.13
-            tr
-              td California State Income Tax
-              td $1,203.00
-              td -
-            tr.brand4
-              td.text-uppercase 
-                h1 Total
-              td 
-                h1 $1,203.00
-              td 
-                h1 $7.601.12
+        h4.brand2 Funding Details
+        .bg-gray-lighter
+          .table-responsive
+            table.table
+              thead
+                tr
+                  th.text-uppercase Funding Source
+                  th.text-uppercase.text-right Expected Amount
+                  th.text-uppercase.text-right Received Amount
+              tbody
+                each taxReturn, index in returns
+                  tr
+                    td.text-uppercase!= taxReturn.returnDescription
+                    td.text-right
+                      | #{numeral(taxReturn.amountExpected).format('$0,0.00')}
+                    td.text-right
+                      | #{numeral(taxReturn.amountReceived).format('$0,0.00')}
+                tr.brand2
+                  td.text-uppercase
+                    h3 Total
+                  td.text-right
+                    h3 #{numeral(totalAmountExpected).format('$0,0.00')}
+                  td.text-right
+                    h3 #{numeral(totalAmountReceived).format('$0,0.00')}
     .row
       .col-md-12
-        h4.text-uppercase Refund Deductions
-        .chart-wrapper.bg-gray-lighter
-          //- legend Total Processing
-          canvas#totalChart
-          h4#percent
-          h4#amount 
-          #totalLegend
+        h4.brand2 Refund Details
+        .bg-gray-lighter
+          .row
+            .col-md-6
+              canvas#feeChart
+            .col-md-6
+              table.table
+                thead
+                  tr
+                    th.text-uppercase(colspan="2") Description
+                    th.text-uppercase.text-right Amount
+                tbody
+                  each fee, index in fees
+                    tr
+                      td
+                        .widget(style="background-color: #{fee.color}") &nbsp;
+                      td.text-uppercase!= fee.label
+                      td.text-right
+                        | #{numeral(fee.value).format('$0,0.00')}
+                  tr.brand2
+                    td.text-uppercase(colspan="2")
+                      h3 Refund Due
+                    td.text-right
+                      h3 #{numeral(refund).format('$0,0.00')}
     .row
       .col-md-12
-        h4.text-uppercase Disbursement
-        .table-responsive
-          table.table.bg-gray-lighter
-            tr
-              th.text-uppercase Date
-              th.text-uppercase Method
-              th.text-uppercase Amount
-            tr
-              td Federal Income Tax
-              td $6,345.00
-              td $6,127.13
-            tr
-              td California State Income Tax
-              td $1,203.00
-              td -
-            tr.brand4
-              td.text-uppercase 
-                h1 Total
-              td 
-                h1 $1,203.00
-              td 
-                h1 $7.601.12              
-        
-
-            
+        h4.brand2 Payment Details
+        .bg-gray-lighter
+          .table-responsive
+            table.table
+              tr
+                th.text-uppercase Date
+                th.hidden-xs.text-uppercase Method
+                th.hidden-xs
+                th.text-uppercase.text-right Payment Amount
+              each disbursement, index in disbursements
+                tr
+                  td.text-uppercase
+                    | #{moment(disbursement.date).format('M/D/YYYY')}
+                  td.hidden-xs.text-uppercase!= disbursement.method
+                  td.hidden-xs
+                    //- img.payment-logo(src='https://d1ir1l1v07ijd0.cloudfront.net/img/walmart/walmart-direct-2-cash-logo.png')
+                  td.text-right
+                    | #{numeral(disbursement.amount).format('$0,0.00')}
+              tr.brand2
+                td.text-uppercase
+                  h3 Total
+                td.hidden-xs
+                td.hidden-xs
+                td.text-right
+                  h3 #{numeral(totalAmountDisbursed).format('$0,0.00')}
+    .row
+      .col-md-12
+        h4.brand1 &nbsp;
 block scripts
-  script(src='/lib/Chart.js/Chart.min.js')
+  script(src='/lib/numeral/numeral.min.js')
+  script(src='/lib/chart.js/chart.min.js')
   script.
     $(document).ready(function () {
-      
-      if (#{count} > 0) {
-        
         //- Set global chart options
         Chart.defaults.global.responsive = true;
-        
-        /**
-         * Total Processing
-         */
-        
-        var canvasTotal;
-        var ctxTotal;
-        var notPaid;
-        var percentComplete;
-        
-        percentComplete = 100 * (Number(#{paid}) / Number(#{count}));
-        percentComplete.toFixed(2);
-        
-        //- Get the context of the canvas element we want to select
-        canvasTotal = document.getElementById('totalChart');
-        ctxTotal = canvasTotal.getContext('2d');
-        notPaid = Number(#{count}) - Number(#{paid});
-        
-        //- Define total data
-        var totalData = [
-          {
-            value: Number(#{paid}),
-            color: "#46BFBD",
-            highlight: "#5AD3D1",
-            label: "Paid"
-          },
-          {
-            value: notPaid,
-            color:"#F7464A",
-            highlight: "#FF5A5E",
-            label: "Not Paid"
-          }
-        ];
-        
-        //- Draw total doughnut chart
-        var totalDoughnutChart = new Chart(ctxTotal).Doughnut(totalData, {
-          legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0;i<segments.length;i++){%><li></span><%if(segments[i].label){%><%=segments[i].label%>:&nbsp;<%=segments[i].value%><%}%></li><%}%></ul>"
-        });
-        
-        //- Draw legend
-        //- document.getElementById("totalLegend").innerHTML = totalDoughnutChart.generateLegend();
-        document.getElementById("percent").innerHTML = 'Percent Complete: ' + percentComplete.toFixed(2) + '%';
-        document.getElementById("amount").innerHTML = 'Amount Collected: $' + (Number(#{paidBankAmount}) + Number(#{paidCreditCardAmount})).toFixed(2);
-        
-        /**
-         * Bank vs. Credit Card
-         */
-        
-        var canvasSplit;
-        var ctxSplit;
-        var paidBank = 5;
-        var paidCreditCard = 2;
-        
-        //- Get the context of the canvas element we want to select
-        canvasSplit = document.getElementById('splitChart');
-        ctxSplit = canvasSplit.getContext('2d');
-        
-        //- Sefine split data
-        var splitData = [
-          {
-            value: Number(#{paidCreditCardCount}),
-            color: "#FDB45C",
-            highlight: "#FFC870",
-            label: "Credit Card"
-          },
-          {
-            value: Number(#{paidBankCount}),
-            color: "#46BFBD",
-            highlight: "#5AD3D1",
-            label: "Bank Account"
-          }
-        ];
-        
-        //- Draw split doughnut chart
-        var splitDoughnutChart = new Chart(ctxSplit).Doughnut(splitData, {
-          legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0;i<segments.length;i++){%><li></span><%if(segments[i].label){%><%=segments[i].label%>:&nbsp;<%=segments[i].value%><%}%></li><%}%></ul>"
-        });
-        
-        //- Draw legend
-        //- document.getElementById("splitLegend").innerHTML = splitDoughnutChart.generateLegend();
-        document.getElementById("paidCreditCard").innerHTML = 'Paid via Credit Card: $' + Number(#{paidCreditCardAmount}).toFixed(2);
-        document.getElementById("paidBank").innerHTML = 'Paid via Bank: $' + Number(#{paidBankAmount}).toFixed(2);
 
-      } 
-      
+        //- Get the context of the canvas element we want to select
+        //- canvasFees = document.getElementById('feeChart');
+        //- ctxTotal = canvasFees.getContext('2d');
+
+        var ctx = document.getElementById("feeChart").getContext("2d");
+
+        //- Draw total doughnut chart
+        //- var totalDoughnutChart = new Chart(ctxTotal).Doughnut(!{chartFees}, {
+        //-   tooltipTemplate : function(valueObj) {
+        //-     return numeral(valueObj.value).format('$0,0.00');
+        //-   }
+        //- });
+
+        var myDoughnutChart = new Chart(ctx, {
+          type: 'doughnut',
+          data: !{chartFees},
+          options: {
+            cutoutPercentage: 50
+          }
+        });
     });
-  
-  
-  
-  
-  
-  //- script.
-  //-   setTimeout(function() {
-  //-     var stylesheet;
-  //-     // from head
-  //-     stylesheet = document.createElement('link');
-  //-     stylesheet.href = '//fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,500,700';
-  //-     stylesheet.rel = 'stylesheet';
-  //-     stylesheet.type = 'text/css';
-  //-     document.getElementsByTagName('head')[0].appendChild(stylesheet);
-  //-     // from styles above
-  //-     stylesheet = document.createElement('link');
-  //-     stylesheet.href = '/css/page-enrollment.min.css';
-  //-     stylesheet.rel = 'stylesheet';
-  //-     stylesheet.type = 'text/css';
-  //-     document.getElementsByTagName('head')[0].appendChild(stylesheet);
-  //-     // from syles above
-  //-     stylesheet = document.createElement('link');
-  //-     stylesheet.href = '/lib/animate.css/animate.min.css';
-  //-     stylesheet.rel = 'stylesheet';
-  //-     stylesheet.type = 'text/css';
-  //-     document.getElementsByTagName('head')[0].appendChild(stylesheet);
-  //-   }, 0);

@@ -1,38 +1,38 @@
 messages
-  if messages 
+  if messages
     if messages.error
-      .alert.alert-danger.alert-dismissable
-        button.close(type='button', data-dismiss='alert', aria-hidden='true')
-          i.fa.fa-times-circle-o
+      .alert.alert-danger.alert-dismissible.fade.show(role='alert')
         for error in messages.error
-          p.flashmsg
+          .alert_message
             strong
-              i.fa.fa-lg.fa-exclamation-triangle
+              i.fas.fa-lg.fa-exclamation-triangle
             | &nbsp;&nbsp;#{error}
+            button.close(type='button', data-dismiss='alert', aria-label='Close')
+              span(aria-hidden='true') &times;
     if messages.warning
-      .alert.alert-warning.alert-dismissable
-        button.close(type='button', data-dismiss='alert', aria-hidden='true')
-          i.fa.fa-times-circle-o
+      .alert.alert-warning.alert-dismissible.fade.show(role='alert')
         for warning in messages.warning
-          p.flashmsg
+          .alert_message
             strong
-              i.fa.fa-lg.fa-exclamation-triangle
+              i.fas.fa-lg.fa-exclamation-triangle
             | &nbsp;&nbsp;#{warning}
+            button.close(type='button', data-dismiss='alert', aria-label='Close')
+              span(aria-hidden='true') &times;
     if messages.info
-      .alert.alert-info.alert-dismissable
-        button.close(type='button', data-dismiss='alert', aria-hidden='true')
-          i.fa.fa-times-circle-o
+      .alert.alert-info.alert-dismissible.fade.show(role='alert')
         for info in messages.info
-          p.flashmsg
+          .alert_message
             strong
-              i.fa.fa-lg.fa-info-circle
+              i.fas.fa-lg.fa-info-circle
             | &nbsp;&nbsp;#{info}
+            button.close(type='button', data-dismiss='alert', aria-label='Close')
+              span(aria-hidden='true') &times;
     if messages.success
-      .alert.alert-success.alert-dismissable
-        button.close(type='button', data-dismiss='alert', aria-hidden='true')
-          i.fa.fa-times-circle-o
+      .alert.alert-success.alert-dismissible.fade.show(role='alert')
         for success in messages.success
-          p.flashmsg
+          .alert_message
             strong
-              i.fa.fa-lg.fa-check-circle
+              i.fas.fa-lg.fa-check-circle
             | &nbsp;&nbsp;#{success}
+            button.close(type='button', data-dismiss='alert', aria-label='Close')
+              span(aria-hidden='true') &times;

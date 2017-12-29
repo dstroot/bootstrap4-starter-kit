@@ -64,6 +64,10 @@ var paths = {
     'public/js/**/*.min.js',
     'public/lib/bootstrap/js/dist/**/*.js',
     'public/lib/bootstrap/js/dist/**/*.js.map',
+    'public/lib/popper.js/**/*',
+    'public/lib/animate.css/**/*',
+    'public/lib/chart.js/**/*',
+    'public/lib/numeral/**/*',
     'public/css/**/*.css',
     'public/css/**/*.min.css',
     'public/css/**/*.map',
@@ -76,17 +80,17 @@ var paths = {
 
     // Enable/disable as needed but only turn on
     // .js that is needed on *every* page. No bloat!
-    'public/lib/bootstrap/js/dist/util.js',
-    'public/lib/bootstrap/js/dist/alert.js',
-    'public/lib/bootstrap/js/dist/button.js',
-    'public/lib/bootstrap/js/dist/carousel.js',
-    'public/lib/bootstrap/js/dist/collapse.js',
-    'public/lib/bootstrap/js/dist/dropdown.js',
-    'public/lib/bootstrap/js/dist/modal.js',
-    'public/lib/bootstrap/js/dist/scrollspy.js',
-    'public/lib/bootstrap/js/dist/tab.js',
-    'public/lib/bootstrap/js/dist/tooltip.js',
-    'public/lib/bootstrap/js/dist/popover.js'
+    'node_modules/bootstrap/js/dist/util.js',
+    'node_modules/bootstrap/js/dist/alert.js',
+    'node_modules/bootstrap/js/dist/button.js',
+    'node_modules/bootstrap/js/dist/carousel.js',
+    'node_modules/bootstrap/js/dist/collapse.js',
+    'node_modules/bootstrap/js/dist/dropdown.js',
+    'node_modules/bootstrap/js/dist/modal.js',
+    'node_modules/bootstrap/js/dist/scrollspy.js',
+    'node_modules/bootstrap/js/dist/tab.js',
+    'node_modules/bootstrap/js/dist/tooltip.js',
+    'node_modules/bootstrap/js/dist/popover.js'
 
     // 'public/lib/app/app.js'
   ],
@@ -116,6 +120,25 @@ var paths = {
 gulp.task('clean', function () {
   return del(paths.clean);
 });
+
+gulp.task('copy', function () {
+  // popper
+  gulp.src('./node_modules/popper.js/dist/umd/popper.min.*')
+    .pipe(gulp.dest('./public/lib/popper.js'));
+
+  // animate.css
+  gulp.src('./node_modules/animate.css/animate.min.css')
+    .pipe(gulp.dest('./public/lib/animate.css'));
+
+  // chart.js
+  gulp.src('./node_modules/chart.js/dist/*.*')
+    .pipe(gulp.dest('./public/lib/chart.js'));
+
+  // numeral
+  gulp.src('./node_modules/numeral/min/*.*')
+    .pipe(gulp.dest('./public/lib/numeral'));
+});
+
 
 /**
  * Process CSS
@@ -249,7 +272,7 @@ gulp.task('test', function (cb) {
 gulp.task('build', function (cb) {
   runSequence(
     'clean',                     // first clean
-    ['lint', 'jscs'],            // then lint and jscs
+    ['copy', 'lint', 'jscs'],            // then lint and jscs
     ['styles', 'scripts'],       // Then styles and scripts
     // ['test'],
     cb);

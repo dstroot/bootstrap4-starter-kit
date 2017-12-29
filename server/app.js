@@ -307,14 +307,16 @@ app.use(helmet.contentSecurityPolicy({
       'https://ajax.googleapis.com',
       'http://www.google-analytics.com',
       'https://www.google-analytics.com',
-      'https://code.jquery.com'
+      'https://code.jquery.com',
+      'https://use.fontawesome.com'
     ],
     styleSrc: [
       "'self'",
 
-      // "'unsafe-inline'",
+      "'unsafe-inline'",
       'http://fonts.googleapis.com',
-      'https://fonts.googleapis.com',
+      'https://fonts.googleapis.com'
+      // 'sha256-NGrhkNli/ZpFRDFZPNE+9N5bzlNPk33gsfh3Z1hZ1ps='
     ],
     fontSrc: [
       "'self'",
@@ -387,6 +389,7 @@ app.use('/', require('./routes/index'));
 app.use('/status', require('./routes/status'));
 app.use('/error', require('./routes/error'));
 app.use('/health', require('./routes/health'));
+app.use('/messages', require('./routes/messages'));
 
 /**
  * Error Handling

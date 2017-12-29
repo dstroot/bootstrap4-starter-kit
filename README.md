@@ -33,6 +33,13 @@
 
 This is a basic website template with all the bells and whistles.
 
+## Components
+
+* [Bootstrap 4](http://getbootstrap.com/)
+* [Font Awesome 5](https://fontawesome.com/)
+* []()
+
+
 ## Quick Start
 
 1. Download - `git clone ...`
