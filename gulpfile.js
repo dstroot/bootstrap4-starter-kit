@@ -215,26 +215,10 @@ gulp.task('scripts', ['transpile'], () => {
     .pipe($.livereload());                  // Initiate a reload
 });
 
-// /**
-//  * JSHint Files
-//  */
-//
-// gulp.task('lint', function () {
-//   return gulp.src(paths.lint)               // Read .js files
-//     .pipe($.jshint())                       // lint .js files
-//     .pipe($.jshint.reporter('jshint-stylish'));
-// });
-//
-// /**
-//  * JSCS Files
-//  */
-//
-// gulp.task('jscs', function () {
-//   return gulp.src(paths.lint)               // Read .js files
-//     .pipe($.jscs({ fix: true }))
-//     .pipe($.jscs.reporter());
-// });
 
+/**
+ * Lint all the things
+ */
 
 gulp.task('lint', () => {
   // ESLint ignores files with "node_modules" paths.
