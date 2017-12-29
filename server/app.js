@@ -399,7 +399,7 @@ app.use((req, res, next) => {
 });
 
 // Main error Handler
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
   res.status(err.status || 500);
 
   debug(`Error: ${(err.status || 500).toString()} ${err}`);
