@@ -100,7 +100,6 @@ const paths = {
     // 'server/routes/**/*.js',
     // 'server/models/**/*.js',
     'server/app.js',
-    // 'server/config.js',
     'gulpfile.js',
   ],
   scss: [
@@ -221,10 +220,8 @@ gulp.task('scripts', ['transpile'], () => {
  */
 
 gulp.task('lint', () => {
-  // ESLint ignores files with "node_modules" paths.
-  // So, it's best to have gulp ignore the directory as well.
-  // Also, Be sure to return the stream from the task;
-  // Otherwise, the task may end before the stream has finished.
+  // Be sure to return the stream from the task; Otherwise,
+  // the task may end before the stream has finished.
   return gulp.src(paths.lint)
     // eslint() attaches the lint output to the "eslint" property
     // of the file object so it can be used by other modules.
@@ -273,8 +270,8 @@ gulp.task('test', (cb) => {
 gulp.task('build', (cb) => {
   runSequence(
     'clean',                     // first clean
-    ['copy', 'lint'],            // then lint and jscs
-    ['styles', 'scripts'],       // Then styles and scripts
+    ['copy', 'lint'],            // then lint
+    ['styles', 'scripts'],       // Then build styles and scripts
     // ['mocha'],
     cb,
   );
