@@ -3,5 +3,5 @@
 .env
 node_modules/
 coverage/
-less/
+scss/
 test/

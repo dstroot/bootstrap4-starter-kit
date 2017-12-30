@@ -1,17 +1,13 @@
-'use strict';
-/*jshint esversion: 6 */
-/* exported dotenv */
-
 /**
  * Module Dependencies
  */
 
 // Node Modules
-const path       = require('path');               // http://nodejs.org/docs/v0.10.25/api/path.html
+const path = require('path');               // http://nodejs.org/docs/v0.10.25/api/path.html
 
 // Configuration and debugging
-const pkg        = require('../package.json');
-const debug      = require('debug')(pkg.name + ':app'); // name of this .js file
+const pkg = require('../package.json');
+const debug = require('debug')(`${pkg.name}:app`);  // always use app name and name of .js file
 
 // Express 4.x Modules
 const csrf       = require('csurf');              // https://github.com/expressjs/csurf
@@ -25,8 +21,9 @@ const bodyParser = require('body-parser');        // https://github.com/expressj
 // Third Party Modules
 const flash      = require('express-flash');      // https://npmjs.org/package/express-flash
 const helmet     = require('helmet');             // https://github.com/evilpacket/helmet
-const dotenv     = require('dotenv').config();    // https://www.npmjs.com/package/dotenv
 const enforce    = require('express-sslify');     // https://github.com/florianheinemann/express-sslify
+
+require('dotenv').config();                       // https://www.npmjs.com/package/dotenv
 
 /**
  * Constants
@@ -48,13 +45,13 @@ const mySession = {
   proxy: false,   // Trust the reverse proxy for HTTPS/SSL
   resave: false,  // Forces session to be saved even when unmodified
   secret: process.env.SESSION_SECRET || 'my big secret',
-  saveUninitialized: true // forces a session that is "uninitialized" to be saved to the store
+  saveUninitialized: true, // forces a session that is "uninitialized" to be saved to the store
 };
 
 mySession.cookie = {
-  secure: false,  // Cookies via HTTPS/SSL
+  secure: false,   // Cookies via HTTPS/SSL
   maxAge: hour,
-  httpOnly: true  // Reduce XSS attack vector
+  httpOnly: true,  // Reduce XSS attack vector
 };
 
 // // Redis for session storage
@@ -138,7 +135,6 @@ app.locals.moment = require('moment');
 app.locals.numeral = require('numeral');
 
 if (app.get('env') === 'development') {
-
   // Jade options: Don't minify html, debug intrumentation
   app.locals.pretty = true;
   app.locals.compileDebug = true;
@@ -153,7 +149,6 @@ if (app.get('env') === 'development') {
 }
 
 if (app.get('env') === 'production') {
-
   // Jade options: minify html, no debug intrumentation
   app.locals.pretty = false;
   app.locals.compileDebug = false;
@@ -185,7 +180,7 @@ if (app.get('env') === 'production') {
     maxAge: month * 12, // Must be at least 18 weeks to be approved by Google
     includeSubdomains: true, // Must be enabled to be approved by Google
     force: true,
-    preload: true
+    preload: true,
   }));
 
   // Public Key Pinning: HPKP
@@ -218,8 +213,8 @@ app.use(favicon(path.join(__dirname, '../public/favicon.ico')));
 // Report CSP violations (also high the middleware stack)
 // Browsers will post violations to this route
 // https://mathiasbynens.be/notes/csp-reports
-app.post('/csp', bodyParser.json(), function (req, res) {
-  var err = new Error('CSP Violation: ' + JSON.stringify(req.body));
+app.post('/csp', bodyParser.json(), (req, res) => {
+  const err = new Error(`CSP Violation: ${JSON.stringify(req.body)}`);
   if (app.get('env') === 'production') {
     debug(err);
   } else {
@@ -283,7 +278,8 @@ app.use(csrf());                      // Prevent Cross-Site Request Forgery
 app.use(helmet.ieNoOpen());           // X-Download-Options for IE8+
 app.use(helmet.noSniff());            // Sets X-Content-Type-Options to nosniff
 app.use(helmet.xssFilter());          // sets the X-XSS-Protection header
-app.use(helmet.frameguard('deny'));   // Prevent iframe clickjacking
+app.use(helmet.frameguard({ action: 'deny' })); // Prevent iframe clickjacking
+app.use(helmet.dnsPrefetchControl()); // Sets "X-DNS-Prefetch-Control: off".
 
 // Content Security Policy:
 //   http://content-security-policy.com/
@@ -308,15 +304,14 @@ app.use(helmet.contentSecurityPolicy({
       'http://www.google-analytics.com',
       'https://www.google-analytics.com',
       'https://code.jquery.com',
-      'https://use.fontawesome.com'
+      'https://use.fontawesome.com',
     ],
     styleSrc: [
       "'self'",
 
       "'unsafe-inline'",
       'http://fonts.googleapis.com',
-      'https://fonts.googleapis.com'
-      // 'sha256-NGrhkNli/ZpFRDFZPNE+9N5bzlNPk33gsfh3Z1hZ1ps='
+      'https://fonts.googleapis.com',
     ],
     fontSrc: [
       "'self'",
@@ -325,7 +320,7 @@ app.use(helmet.contentSecurityPolicy({
       'http://fonts.gstatic.com',
       'https://fonts.gstatic.com',
       'htp://themes.googleusercontent.com',
-      'https://themes.googleusercontent.com'
+      'https://themes.googleusercontent.com',
     ],
     imgSrc: [
       "'self'",
@@ -334,25 +329,25 @@ app.use(helmet.contentSecurityPolicy({
       'https://chart.googleapis.com',
       'http://www.google-analytics.com',
       'https://www.google-analytics.com',
-      'https://d1ir1l1v07ijd0.cloudfront.net/img/ico/favicon.png'
+      'https://d1ir1l1v07ijd0.cloudfront.net/img/ico/favicon.png',
     ],
     mediaSrc: [
-      "'self'"
+      "'self'",
     ],
     connectSrc: [
       "'self'", // limit the origins (via XHR, WebSockets, and EventSource)
       'ws://127.0.0.1:35729/livereload',
     ],
     frameSrc: [
-      "'none'"
+      "'none'",
     ],
     sandbox: [
       'allow-same-origin',
       'allow-forms',
-      'allow-scripts'
+      'allow-scripts',
     ],
     objectSrc: ["'none'"], // An empty array allows nothing through
-    reportUri: '/csp'
+    reportUri: '/csp',
   },
 
   // Set to true if you only want browsers to report errors, not block them
@@ -363,11 +358,12 @@ app.use(helmet.contentSecurityPolicy({
   setAllHeaders: false,
 
   // Set to true if you want to disable CSP on Android where it can be buggy.
-  disableAndroid: false
+  disableAndroid: false,
 }));
 
 // Keep csrf token and config available
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
+  /* eslint no-param-reassign: ["error", { "props": true, "ignorePropertyModificationsFor": ["res.locals"] }] */
   res.locals._csrf = req.csrfToken();
   next();
 });
@@ -397,25 +393,27 @@ app.use('/messages', require('./routes/messages'));
 
 // Catch 404 and forward to error handlers
 // Its a 404 if nothing else responded above!
-app.use(function (req, res, next) {
-  var err = new Error('Page Not Found!');
+app.use((req, res, next) => {
+  const err = new Error('Page Not Found!');
   err.status = 404;
   next(err);
 });
 
 // Main error Handler
-app.use(function (err, req, res, next) {
+app.use((err, req, res, next) => {
   res.status(err.status || 500);
-  debug('Error: ' + (err.status || 500).toString() + ' ' + err);
+
+  debug(`Error: ${(err.status || 500).toString()} ${err}`);
+
   if (app.get('env') === 'production') {
-    err.stack = null; // don't leak information in production!
+    /* eslint no-param-reassign: ["error", { "props": true, "ignorePropertyModificationsFor": ["err"] }] */
+    delete err.stack; // don't leak information in production!
   }
 
   res.render('error/error', {
     url: req.url,
-    error: err
+    error: err,
   });
 });
-
 
 module.exports = app;

@@ -94,32 +94,61 @@ block content
     .row
       .col-md-12
         h4.brand1 &nbsp;
+
 block scripts
   script(src='/lib/numeral/numeral.min.js')
   script(src='/lib/chart.js/chart.min.js')
   script.
-    $(document).ready(function () {
-        //- Set global chart options
-        Chart.defaults.global.responsive = true;
+    window.chartColors = {
+    	red: 'rgb(255, 99, 132)',
+    	orange: 'rgb(255, 159, 64)',
+    	yellow: 'rgb(255, 205, 86)',
+    	green: 'rgb(75, 192, 192)',
+    	blue: 'rgb(54, 162, 235)',
+    	purple: 'rgb(153, 102, 255)',
+    	grey: 'rgb(201, 203, 207)'
+    };
 
-        //- Get the context of the canvas element we want to select
-        //- canvasFees = document.getElementById('feeChart');
-        //- ctxTotal = canvasFees.getContext('2d');
+    var config = {
+        type: 'doughnut',
+        data: {
+            datasets: [{
+                data: [!{chartFees}],
+                backgroundColor: [
+                    window.chartColors.red,
+                    window.chartColors.orange,
+                    window.chartColors.yellow,
+                    window.chartColors.green,
+                    window.chartColors.blue,
+                ],
+                label: 'Dataset 1'
+            }],
+            labels: [
+                "Red",
+                "Orange",
+                "Yellow",
+                "Green",
+                "Blue"
+            ]
+        },
+        options: {
+            responsive: true,
+            legend: {
+                position: 'bottom',
+            },
+            title: {
+                display: false,
+                text: ''
+            },
+            animation: {
+                animateScale: true,
+                animateRotate: true
+            }
+        }
+    };
 
+    // draw chart
+    window.onload = () => {
         var ctx = document.getElementById("feeChart").getContext("2d");
-
-        //- Draw total doughnut chart
-        //- var totalDoughnutChart = new Chart(ctxTotal).Doughnut(!{chartFees}, {
-        //-   tooltipTemplate : function(valueObj) {
-        //-     return numeral(valueObj.value).format('$0,0.00');
-        //-   }
-        //- });
-
-        var myDoughnutChart = new Chart(ctx, {
-          type: 'doughnut',
-          data: !{chartFees},
-          options: {
-            cutoutPercentage: 50
-          }
-        });
-    });
+        window.myDoughnut = new Chart(ctx, config);
+    };

@@ -1,33 +1,52 @@
 #!/usr/bin/env node
-/* exported colors */
 
 /**
  * Module dependencies.
  */
 
-var app    = require('../app');
-var semver = require('semver');                  // https://npmjs.org/package/semver
+const app = require('../app');
+const chalk = require('chalk');       // https://github.com/chalk/chalk
+const semver = require('semver');     // https://npmjs.org/package/semver
 
 // Node Modules
-var http   = require('http');
+const http = require('http');
 
 // Configuration and debugging
-var pkg    = require('../../package.json');
-var debug  = require('debug')(pkg.name + ':www');  // always use app name and name of .js file
-var colors = require('colors');
+const pkg = require('../../package.json');
+const debug = require('debug')(`${pkg.name}:www`);  // always use app name and name of .js file
+
+/**
+* Normalize a port into a number, string, or false.
+*/
+
+function normalizePort(val) {
+  const port = parseInt(val, 10);
+
+  if (Number.isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 /**
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+const server = http.createServer(app);
 
 /**
  * Create HTTPs server.
@@ -66,46 +85,23 @@ var server = http.createServer(app);
 //   ].join(':'),
 // }, app);
 
-/**
- * Listen on provided port, on all network interfaces.
- */
-
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
-
-/**
- * Normalize a port into a number, string, or false.
- */
-
-function normalizePort(val) {
-  'use strict';
-  var port = parseInt(val, 10);
-
-  if (isNaN(port)) {
-    // named pipe
-    return val;
-  }
-
-  if (port >= 0) {
-    // port number
-    return port;
-  }
-
-  return false;
-}
 
 /**
  * Event listener for HTTP server "error" event.
  */
 
 function onError(error) {
-  'use strict';
+  // var bind = (typeof port === 'string') ? 'Pipe ' + port : 'Port ' + port;
+  let bind = '';
+  if (typeof port === 'string') {
+    bind = `Pipe, ${port}`;
+  } else {
+    bind = `Port, ${port}`;
+  }
+
   if (error.syscall !== 'listen') {
     throw error;
   }
-
-  var bind = (typeof port === 'string') ? 'Pipe ' + port : 'Port ' + port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
@@ -127,10 +123,15 @@ function onError(error) {
  */
 
 function onListening() {
-  'use strict';
-  var addr = server.address();
-  var bind = (typeof addr === 'string') ? 'pipe ' + addr : 'port ' + addr.port;
-  var engine = pkg.engines.node || pkg.engines.iojs;
+  const addr = server.address();
+  const engine = pkg.engines.node;
+  let bind = '';
+
+  if (typeof addr === 'string') {
+    bind = `pipe ${addr}`;
+  } else {
+    bind = `port: ${addr.port}`;
+  }
 
   // Test for correct node version as spec'ed in package.info
   if (!semver.satisfies(process.versions.node, engine)) {
@@ -140,16 +141,23 @@ function onListening() {
   }
 
   // Exit cleanly on Ctrl+C
-  process.on('SIGINT', function () {
+  process.on('SIGINT', () => {
     console.log('\n');
-    debug('has ' + 'shutdown'.green.bold);
-    debug('was running for ' + Math.round(process.uptime()).toString().green.bold + ' seconds.');
+    debug(`has ${chalk.green.bold('shutdown')}`);
+    debug(`was running for ${chalk.green.bold(Math.round(process.uptime()).toString())} seconds.`);
     process.exit(0);
   });
 
   // Log how we are running
-  debug('Listening on: ' + bind.green.bold);
-  debug('listening in ' + app.settings.env.green.bold + ' mode.');
-  debug('Ctrl+C'.green.bold + ' to shut down. ;)');
-
+  debug(`Listening on: ${chalk.green.bold(bind)}`);
+  debug(`Listening in ${chalk.green.bold(app.settings.env)} mode.`);
+  debug(`${chalk.green.bold('Ctrl+C')} to shut down.`);
 }
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);

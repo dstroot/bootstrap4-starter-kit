@@ -1,10 +1,4 @@
-# Base image
-FROM iojs:slim
-
-# Maintainer
-MAINTAINER Dan Stroot <dan.stroot@gmail.com>
-
-LABEL Description="Runs our Node App" Vendor="Tax Products Group"
+FROM node:9.3-slim
 
 # Setup environment variables
 ENV NODE_ENV development
