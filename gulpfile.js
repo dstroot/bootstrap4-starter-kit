@@ -256,7 +256,7 @@ gulp.task('lint', () => {
   return gulp.src(paths.lint)
     // eslint() attaches the lint output to the "eslint" property
     // of the file object so it can be used by other modules.
-    .pipe($.eslint('.eslintrc'))
+    .pipe($.eslint('.eslintrc.json'))
     // eslint.format() outputs the lint results to the console.
     // Alternatively use eslint.formatEach() (see Docs).
     .pipe($.eslint.format());
@@ -305,9 +305,9 @@ gulp.task('build', (cb) => {
   runSequence(
     'clean',                     // first clean
     ['copy', 'lint'],            // then lint
-    ['styles', 'scripts'],       // Then build styles and scriptsnpm
-    cb,
-  );
+    ['styles', 'scripts'],       // Then build styles and scripts
+    ['images'],                  // process images
+    cb);
 });
 
 /**

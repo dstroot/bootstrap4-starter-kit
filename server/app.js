@@ -292,13 +292,13 @@ app.use(helmet.contentSecurityPolicy({
   // Specify directives as normal.
   directives: {
     defaultSrc: [
-      "'self'",
+      '\'self\'',
     ],
     scriptSrc: [
-      "'self'",
+      '\'self\'',
 
       // "'unsafe-eval'",
-      "'unsafe-inline'",
+      '\'unsafe-inline\'',
       'http://ajax.googleapis.com',
       'https://ajax.googleapis.com',
       'http://www.google-analytics.com',
@@ -307,14 +307,14 @@ app.use(helmet.contentSecurityPolicy({
       'https://use.fontawesome.com',
     ],
     styleSrc: [
-      "'self'",
+      '\'self\'',
 
-      "'unsafe-inline'",
+      '\'unsafe-inline\'',
       'http://fonts.googleapis.com',
       'https://fonts.googleapis.com',
     ],
     fontSrc: [
-      "'self'",
+      '\'self\'',
       'http://fonts.googleapis.com',
       'https://fonts.googleapis.com',
       'http://fonts.gstatic.com',
@@ -323,7 +323,7 @@ app.use(helmet.contentSecurityPolicy({
       'https://themes.googleusercontent.com',
     ],
     imgSrc: [
-      "'self'",
+      '\'self\'',
       'data:',
       'http://chart.googleapis.com',
       'https://chart.googleapis.com',
@@ -332,21 +332,21 @@ app.use(helmet.contentSecurityPolicy({
       'https://d1ir1l1v07ijd0.cloudfront.net/img/ico/favicon.png',
     ],
     mediaSrc: [
-      "'self'",
+      '\'self\'',
     ],
     connectSrc: [
-      "'self'", // limit the origins (via XHR, WebSockets, and EventSource)
+      '\'self\'', // limit the origins (via XHR, WebSockets, and EventSource)
       'ws://127.0.0.1:35729/livereload',
     ],
     frameSrc: [
-      "'none'",
+      '\'none\'',
     ],
     sandbox: [
       'allow-same-origin',
       'allow-forms',
       'allow-scripts',
     ],
-    objectSrc: ["'none'"], // An empty array allows nothing through
+    objectSrc: ['\'none\''], // An empty array allows nothing through
     reportUri: '/csp',
   },
 

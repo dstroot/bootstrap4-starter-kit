@@ -105,16 +105,16 @@ function onError(error) {
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
-    case 'EACCES':
-      debug(bind.red.bold + ' requires elevated privileges'.red.bold);
-      process.exit(1);
-      break;
-    case 'EADDRINUSE':
-      debug(bind.red.bold + ' is already in use'.red.bold);
-      process.exit(1);
-      break;
-    default:
-      throw error;
+  case 'EACCES':
+    debug(`${chalk.red.bold('${bind} requires elevated privileges.')}`);
+    process.exit(1);
+    break;
+  case 'EADDRINUSE':
+    debug(`${chalk.red.bold('${bind} is already in use.')}`);
+    process.exit(1);
+    break;
+  default:
+    throw error;
   }
 }
 
@@ -135,15 +135,14 @@ function onListening() {
 
   // Test for correct node version as spec'ed in package.info
   if (!semver.satisfies(process.versions.node, engine)) {
-    debug('Error: unsupported version of Node or io.js!'.red.bold);
-    debug(pkg.name.red.bold + ' needs Node or io.js version '.red.bold + engine.red.bold);
+    debug(`${chalk.red.bold('Error: unsupported version of Node!')}`);
+    debug(`${chalk.red.bold(pkg.name)} needs Node version ${chalk.red.bold(engine)}`);
     process.exit(0);
   }
 
   // Exit cleanly on Ctrl+C
   process.on('SIGINT', () => {
-    console.log('\n');
-    debug(`has ${chalk.green.bold('shutdown')}`);
+    debug(`\n has ${chalk.green.bold('shutdown')}`);
     debug(`was running for ${chalk.green.bold(Math.round(process.uptime()).toString())} seconds.`);
     process.exit(0);
   });
