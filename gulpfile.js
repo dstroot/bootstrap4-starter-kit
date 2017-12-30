@@ -1,9 +1,9 @@
-// NOTE: you must install gulp both globally *and* locally.
-// Make sure you `$ npm install -g gulp`
-
 /**
  * Dependencies
  */
+
+// NOTE: you must install gulp both globally *and* locally.
+// Make sure you `$ npm install -g gulp`
 
 const $ = require('gulp-load-plugins')({ lazy: true });
 const os = require('os');
@@ -64,6 +64,7 @@ const paths = {
     'public/js/**/*.min.js',
     'public/lib/bootstrap/js/dist/**/*.js',
     'public/lib/bootstrap/js/dist/**/*.js.map',
+    'public/lib/jquery/**/*',
     'public/lib/popper.js/**/*',
     'public/lib/animate.css/**/*',
     'public/lib/chart.js/**/*',
@@ -96,14 +97,16 @@ const paths = {
   ],
   lint: [
     'server/bin/*',
-    // 'test/**/*.js',
-    // 'server/routes/**/*.js',
-    // 'server/models/**/*.js',
+    'test/**/*.js',
+    'server/routes/**/*.js',
     'server/app.js',
     'gulpfile.js',
   ],
   scss: [
     'scss/main.scss',
+  ],
+  images: [
+    'img/**/*',
   ],
 };
 
@@ -121,6 +124,10 @@ gulp.task('clean', () => {
  */
 
 gulp.task('copy', () => {
+  // jQuery
+  gulp.src('./node_modules/jquery/dist/*.*')
+    .pipe(gulp.dest('./public/lib/jquery'));
+
   // popper
   gulp.src('./node_modules/popper.js/dist/umd/popper.min.*')
     .pipe(gulp.dest('./public/lib/popper.js'));
@@ -164,6 +171,7 @@ gulp.task('styles', () => {
     .pipe($.livereload());                  // Initiate a reload
 });
 
+
 /**
  * transpile es6
  */
@@ -187,6 +195,7 @@ gulp.task('transpile', () => {
     }))                                     // transpile to es5
     .pipe(gulp.dest('./public/lib/bootstrap/js/dist'));
 });
+
 
 /**
  * Process Scripts
@@ -216,6 +225,28 @@ gulp.task('scripts', ['transpile'], () => {
 
 
 /**
+ * Process Images
+ */
+
+gulp.task('images', () => {
+  return gulp.src(paths.images)          // Read images
+    .pipe($.changed('./public/img/'))    // Only process new/changed
+    .pipe($.imagemin([                   // Compress images
+      $.imagemin.gifsicle({ interlaced: true }),
+      $.imagemin.jpegtran({ progressive: true }),
+      $.imagemin.optipng({ optimizationLevel: 5 }),
+      $.imagemin.svgo({
+        plugins: [
+          { removeViewBox: true },
+          { cleanupIDs: false },
+        ],
+      }),
+    ]))
+    .pipe(gulp.dest('./public/img/'));   // Write compressed images
+});
+
+
+/**
  * Lint all the things
  */
 
@@ -240,13 +271,16 @@ gulp.task('lint', () => {
  */
 
 gulp.task('mocha', () => {
-  return gulp.src('./test/*.js', { read: false })
-    .pipe($.mocha())
+  return gulp.src(['./test/*.js'], { read: false })
+    .pipe($.mocha({
+      reporter: 'spec',
+      exit: true,
+    }))
     .once('error', () => {
       process.exit(1);
     })
     .once('end', () => {
-      process.exit(0);
+      process.exit();
     });
 });
 
@@ -255,7 +289,7 @@ gulp.task('mocha', () => {
  */
 
 gulp.task('test', (cb) => {
-  exec('istanbul cover _mocha -- -R spec', (err, stdout, stderr) => {
+  exec('istanbul cover _mocha --exit -- -R spec', (err, stdout, stderr) => {
     console.log(stdout);
     console.log(stderr);
     cb(err);  // finished task
@@ -271,8 +305,7 @@ gulp.task('build', (cb) => {
   runSequence(
     'clean',                     // first clean
     ['copy', 'lint'],            // then lint
-    ['styles', 'scripts'],       // Then build styles and scripts
-    // ['mocha'],
+    ['styles', 'scripts'],       // Then build styles and scriptsnpm
     cb,
   );
 });

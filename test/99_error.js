@@ -8,8 +8,9 @@
 
 const app = require('../server/app');
 const chai = require('chai');      // http://chaijs.com
-const { expect } = chai;          // http://chaijs.com/guide/styles/#expect
 const chaiHttp = require('chai-http');
+
+const { expect } = chai;          // http://chaijs.com/guide/styles/#expect
 
 chai.use(chaiHttp);
 

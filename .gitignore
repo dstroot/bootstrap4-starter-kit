@@ -39,10 +39,8 @@ node_modules
 server.*
 
 #------------------
-# BOWER
+# Libraries
 #------------------
-.bower-cache/
-.bower-registry/
 public/lib/
 
 

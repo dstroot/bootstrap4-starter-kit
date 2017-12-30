@@ -1,16 +1,14 @@
-'use strict';
-
 /**
  * Route Dependencies
  */
 
-var router    = require('express').Router();
+const router    = require('express').Router();
 
 /**
  * Health Check Route
  */
 
-router.get('/', function (req, res, next) {
+router.get('/', (req, res) => {
   res.status(200).json({ message: 'ok' });
 });
 

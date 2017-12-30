@@ -1,18 +1,16 @@
-'use strict';
-
 /**
  * Route Dependencies
  */
 
-var router    = require('express').Router();
+const router = require('express').Router();
 
 /**
  * Main Route
  */
 
-router.get('/', function (req, res, next) {
+router.get('/', (req, res) => {
   res.render('index/index', {
-    url: req.url
+    url: req.url,
   });
 });
 

@@ -13,7 +13,8 @@
     "no-console": 0,
     "arrow-body-style": ["error", "always"],
     "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["err"] }],
-    "no-underscore-dangle": 0
+    "no-underscore-dangle": 0,
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
   },
   "globals": {
     "$": false

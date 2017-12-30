@@ -278,7 +278,8 @@ app.use(csrf());                      // Prevent Cross-Site Request Forgery
 app.use(helmet.ieNoOpen());           // X-Download-Options for IE8+
 app.use(helmet.noSniff());            // Sets X-Content-Type-Options to nosniff
 app.use(helmet.xssFilter());          // sets the X-XSS-Protection header
-app.use(helmet.frameguard('deny'));   // Prevent iframe clickjacking
+app.use(helmet.frameguard({ action: 'deny' })); // Prevent iframe clickjacking
+app.use(helmet.dnsPrefetchControl()); // Sets "X-DNS-Prefetch-Control: off".
 
 // Content Security Policy:
 //   http://content-security-policy.com/
@@ -414,6 +415,5 @@ app.use((err, req, res, next) => {
     error: err,
   });
 });
-
 
 module.exports = app;
