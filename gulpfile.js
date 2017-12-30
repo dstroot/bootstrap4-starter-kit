@@ -173,7 +173,7 @@ gulp.task('styles', () => {
 
 
 /**
- * transpile es6
+ * Transpile es6
  */
 
 gulp.task('transpile', () => {

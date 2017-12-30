@@ -2,6 +2,8 @@
  * Module Dependencies
  */
 
+require('dotenv').config();                       // https://www.npmjs.com/package/dotenv
+
 // Node Modules
 const path = require('path');               // http://nodejs.org/docs/v0.10.25/api/path.html
 
@@ -22,8 +24,6 @@ const bodyParser = require('body-parser');        // https://github.com/expressj
 const flash      = require('express-flash');      // https://npmjs.org/package/express-flash
 const helmet     = require('helmet');             // https://github.com/evilpacket/helmet
 const enforce    = require('express-sslify');     // https://github.com/florianheinemann/express-sslify
-
-require('dotenv').config();                       // https://www.npmjs.com/package/dotenv
 
 /**
  * Constants
@@ -363,7 +363,7 @@ app.use(helmet.contentSecurityPolicy({
 
 // Keep csrf token and config available
 app.use((req, res, next) => {
-  /* eslint no-param-reassign: ["error", { "props": true, "ignorePropertyModificationsFor": ["res.locals"] }] */
+  /* eslint no-param-reassign: ["error", { "props": true, "ignorePropertyModificationsFor": ["res"] }] */
   res.locals._csrf = req.csrfToken();
   next();
 });
