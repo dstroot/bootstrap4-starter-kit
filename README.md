@@ -138,7 +138,6 @@ This is a basic website template with all the bells and whistles.
 
 **PACKAGING / PACKAGE MANAGERS**
 * [NPM](https://www.npmjs.com/) npm is the package manager for javascript.
-* [Bower](http://bower.io/) Web sites are made of lots of things — frameworks, libraries, assets, utilities, and rainbows. Bower manages all these things for you.
 
 **SECURITY**
 * [Helmet](https://github.com/helmetjs/helmet) Helmet helps you secure your Express apps.

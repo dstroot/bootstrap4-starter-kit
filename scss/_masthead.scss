@@ -16,29 +16,29 @@
     font-weight: 500;
   }
 
-  .carbonad {
-    margin-top: 0 !important;
-    margin-bottom: -3rem !important;
-  }
+  // .carbonad {
+  //   margin-top: 0 !important;
+  //   margin-bottom: -3rem !important;
+  // }
 
   @include media-breakpoint-up(sm) {
     padding-top: 5rem;
     padding-bottom: 5rem;
 
-    .carbonad {
-      margin-bottom: 0 !important;
-    }
+    // .carbonad {
+    //   margin-bottom: 0 !important;
+    // }
   }
 
-  @include media-breakpoint-up(md) {
-    h1 {
-      font-size: 4rem;
-    }
-
-    .carbonad {
-      margin-top: 3rem !important;
-    }
-  }
+  // @include media-breakpoint-up(md) {
+  //   h1 {
+  //     font-size: 4rem;
+  //   }
+  //
+  //   .carbonad {
+  //     margin-top: 3rem !important;
+  //   }
+  // }
 }
 
 .bd-pretext {
