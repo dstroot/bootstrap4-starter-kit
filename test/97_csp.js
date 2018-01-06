@@ -1,4 +1,3 @@
-/* jshint -W030 */
 /* global describe */
 /* global it */
 
@@ -7,10 +6,10 @@
  */
 
 const app = require('../server/app');
-const chai = require('chai');      // http://chaijs.com
+const chai = require('chai'); // http://chaijs.com
 const chaiHttp = require('chai-http');
 
-const { expect } = chai;          // http://chaijs.com/guide/styles/#expect
+const { expect } = chai; // http://chaijs.com/guide/styles/#expect
 
 chai.use(chaiHttp);
 
@@ -20,8 +19,9 @@ chai.use(chaiHttp);
 
 describe('Test CSP route', () => {
   describe('POST /csp', () => {
-    it('should return a 204', (done) => {
-      chai.request(app)
+    it('should return a 204', done => {
+      chai
+        .request(app)
         .post('/csp')
         .end((err, res) => {
           expect(err).to.not.exist;

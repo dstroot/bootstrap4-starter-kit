@@ -12,14 +12,14 @@ const router = require('express').Router();
 const returns = [
   {
     returnDescription: 'Federal Income Tax',
-    amountExpected: 6345.00,
-    amountReceived: 6345.00,
+    amountExpected: 6345.0,
+    amountReceived: 6345.0
   },
   {
     returnDescription: 'California State Income Tax',
-    amountExpected: 1203.00,
-    amountReceived: 1203.00,
-  },
+    amountExpected: 1203.0,
+    amountReceived: 1203.0
+  }
 ];
 
 // Get Return Totals
@@ -34,25 +34,25 @@ for (let i = 0, len = returns.length; i < len; i++) {
 // Simulate Fee Data
 const fees = [
   {
-    value: 175.00,
-    label: 'Amount paid to tax preparer',
+    value: 175.0,
+    label: 'Amount paid to tax preparer'
   },
   {
     value: 13.95,
-    label: 'Transmitter fee',
+    label: 'Transmitter fee'
   },
   {
-    value: 7.00,
-    label: 'Disbursement fee',
+    value: 7.0,
+    label: 'Disbursement fee'
   },
   {
     value: 34.95,
-    label: 'Bank Deposit Product fee - Federal',
+    label: 'Bank Deposit Product fee - Federal'
   },
   {
-    value: 10.00,
-    label: 'Bank Deposit Product fee - State',
-  },
+    value: 10.0,
+    label: 'Bank Deposit Product fee - State'
+  }
 ];
 
 // Get Fee Totals
@@ -72,7 +72,7 @@ if (totalAmountReceived > 0) {
 // array.unshift method adds new items to the beginning of an array
 fees.unshift({
   value: refund,
-  label: 'Refund Payment Due',
+  label: 'Refund Payment Due'
 });
 
 /**
@@ -84,8 +84,8 @@ const disbursements = [
   {
     date: new Date(),
     method: 'Walmart Direct2Cash',
-    amount: 7307.10,
-  },
+    amount: 7307.1
+  }
 ];
 
 // Get Disbursement Totals
@@ -109,16 +109,10 @@ router.get('/', (req, res) => {
     refund,
     // chartFees: JSON.stringify(fees),
 
-    chartFees: [
-      175,
-      45,
-      35,
-      5,
-      2,
-    ],
+    chartFees: [175, 45, 35, 5, 2],
 
     disbursements,
-    totalAmountDisbursed,
+    totalAmountDisbursed
   });
   // } else {
   //   req.flash('warning', 'Please Enter Your Information');

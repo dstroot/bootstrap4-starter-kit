@@ -1,19 +1,19 @@
-footer
+footer.bg-dark.text-muted.mt-4
   .container
-    .row
-      .col-md-8
+    .row.py-3
+      .col-sm-8
         h4 Footer Content
-        p You can use rows and columns here to organize your footer content.
-      .col-md-4
+        p.my-2 You can use rows and columns here to organize your footer content. This a great place for a short message or some background about the company.
+      .col-sm-4
         h4 Links
-        ul
+        ul.list-unstyled
           li
-            a(href='http://taxproductsgroupblog.com') Blog
+            a.text-white(href='http://taxproductsgroupblog.com') Blog
           li
-            a(href='http://support.tpgtaxpro.com') Support
+            a.text-white(href='http://support.tpgtaxpro.com') Support
           li
-            a(href='/terms') Terms of Use
-    .footer-copyright
-      //- .container
-      | Copyright © #{moment().format('YYYY')} #{application}, all rights reserved.
-      //- a.pull-right(href='https://www.greendot.com/greendot')  A Green Dot Company
+            a.text-white(href='/terms') Terms of Use
+    .row
+      .col-sm-12
+        p.small
+          | Copyright © #{moment().format('YYYY')} #{application}, all rights reserved.

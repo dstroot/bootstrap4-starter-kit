@@ -5,11 +5,11 @@
 const router = require('express').Router();
 
 /**
-* Error Routes
-*
-* NOTE: These routes only exist to test error functionality.
-* They are not used under normal circumstances.
-*/
+ * Error Routes
+ *
+ * NOTE: These routes only exist to test error functionality.
+ * They are not used under normal circumstances.
+ */
 
 // Trigger a 404:
 router.get('/404', (req, res, next) => {
