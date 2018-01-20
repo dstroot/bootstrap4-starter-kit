@@ -11,6 +11,7 @@ const del = require('del');
 const gulp = require('gulp');
 const { exec } = require('child_process');
 const cssnano = require('cssnano');
+const mqpacker = require('css-mqpacker');
 const autoprefixer = require('autoprefixer');
 
 require('dotenv').load({ silent: true });
@@ -141,7 +142,8 @@ gulp.task('styles', () => {
     autoprefixer({ browsers: ['last 2 versions'] }),
     cssnano({
       preset: 'default'
-    })
+    }),
+    mqpacker()
   ];
 
   return gulp
