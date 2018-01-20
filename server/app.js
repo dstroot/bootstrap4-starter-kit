@@ -386,6 +386,7 @@ app.use('/status', require('./routes/status'));
 app.use('/error', require('./routes/error'));
 app.use('/health', require('./routes/health'));
 app.use('/messages', require('./routes/messages'));
+app.use('/examples', require('./routes/examples'));
 
 /**
  * Error Handling
