@@ -34,22 +34,17 @@ $font-family-sans-serif: 'San Francisco', -apple-system, BlinkMacSystemFont, '.S
     transform: scale(1.05);
 }
 
-// hero
-.hero-fixed-height .hero-fixed-height__background, .hero-fixed-height .hero-fixed-height__video {
-    position: relative;
-    max-width: 1920px;
-    margin: 0 auto;
-    line-height: 0;
-}
+/* The hero image */
+.hero-image {
+    /* The image used */
+    background-image: url("/img/landing/hero-1920x960.jpg");
 
-.hero-fixed-height .hero-fixed-height__background-inner {
-    height: 0;
-    padding-bottom: 33%;
-    background-size: cover;
-    background-repeat: no-repeat;
+    /* Set a specific height */
+    min-height: 40vh;
+
+    /* Position and center the image to scale nicely on all screens */
     background-position: center;
-}
-
-.hero-fixed-height__background-inner {
-  background-image: url('/img/landing/hero-1920x960.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
 }

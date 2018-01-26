@@ -5,19 +5,20 @@ block head
 
 block content
   //- attempting this with native BS: https://www.tableau.com/
-
-  .jumbotron.jumbotron-fluid(style='background-image: url(/img/landing/hero-1920x960.jpg);')
+  .hero-image
     .container
       .row
-        .col-md-6
-          h1.display-3 Make your data make an impact
-          p.lead
-            | Tableau helps the world’s largest organizations unleash the power of their most valuable assets: their data and their people.
-          p
-            a.btn.btn-lg.btn-warning(href='#', data-reveal-target='hero-video', data-reveal-media='video', data-reveal-curtain='home-hero') See it in action
+        .col-md-6.text-center.text-md-left.pr-md-5
+          .spacer.mt-3.pt-5
+          h1.display-3.mt-3 Make your data make an impact
+          p.lead.mb-4
+            | Tableau helps the world’s largest organizations unleash the power of their most valuable assets: their data
+          .d-flex.flex-column.flex-md-row.lead.mb-3
+            a.btn.btn-lg.btn-warning.mb-3.mb-md-0.mr-md-3(href='/docs/4.0/getting-started/', onclick="ga('send', 'event', 'Jumbotron actions', 'Get started', 'Get started');") Get started
+            a.btn.btn-lg.btn-outline-secondary(href='/docs/4.0/getting-started/download/', onclick="ga('send', 'event', 'Jumbotron actions', 'Download', 'Download 4.0.0-beta');") Download
 
   .container-fluid
-    .card-group
+    .card-group.py-5
       .card.border-white
         .thumbnail
           a(href='/getting-started/download/#package-managers')
@@ -66,9 +67,8 @@ block content
   .container-fluid.bg-light
 
     .row.text-center
-      .col-md-1
-      .col-md-10
-        br
+      .col-md-2
+      .col-md-8.py-5
         h1.font-weight-light Inspire lightbulb moments
         p.lead
           | Whether you’re driving decisions across your organization or embedding insights into your software, app, or website – choose the analytics software that works the way people think.
@@ -76,7 +76,7 @@ block content
     .row
       .col-md-1
       .col-md-10
-        .card-group
+        .card-group.pb-5
           .card.bg-light.border-light
             .thumbnail
               a(href='/getting-started/download/#package-managers')
