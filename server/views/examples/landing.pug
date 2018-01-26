@@ -1,0 +1,98 @@
+extends ../layouts/layout
+
+block head
+  title #{application} &middot; Error
+
+block content
+  //- attempting this with native BS: https://www.tableau.com/
+
+  .jumbotron.jumbotron-fluid(style='background-image: url(/img/landing/hero-1920x960.jpg);')
+    .container
+      .row
+        .col-md-6
+          h1.display-3 Make your data make an impact
+          p.lead
+            | Tableau helps the world’s largest organizations unleash the power of their most valuable assets: their data and their people.
+          p
+            a.btn.btn-lg.btn-warning(href='#', data-reveal-target='hero-video', data-reveal-media='video', data-reveal-curtain='home-hero') See it in action
+
+  .container-fluid
+    .card-group
+      .card.border-white
+        .thumbnail
+          a(href='/getting-started/download/#package-managers')
+            img.card-img-top(src='/img/landing/whoweare.jpg', alt="")
+        .card-body
+          h4.font-weight-light.card-title Who We Are
+          p.card-text
+            | We're helping people see and understand data.
+        .card-footer.bg-white.border-white
+          a.btn.btn-outline-warning(href='/getting-started/download/#package-managers') Learn More
+
+      .card.border-white
+        .thumbnail
+          a(href='/getting-started/download/#package-managers')
+            img.card-img-top(src='/img/landing/jack.jpg', alt="")
+        .card-body
+          h4.font-weight-light.card-title Users in the Cloud
+          p.card-text
+            | Maker of Jack Daniel's fuels marketing transformation with Tableau.
+        .card-footer.bg-white.border-white
+          a.btn.btn-outline-warning(href='/getting-started/download/#package-managers') Read More
+
+      .card.border-white
+        .thumbnail
+          a(href='/getting-started/download/#package-managers')
+            img.card-img-top(src='/img/landing/community.jpg', alt="")
+        .card-body
+          h4.font-weight-light.card-title Our Community
+          p.card-text
+            | Connect with an active, vibrant community of Tableau users.
+        .card-footer.bg-white.border-white
+          a.btn.btn-outline-warning(href="#") Join In
+
+      .card.border-white
+        .thumbnail
+          a(href='/getting-started/download/#package-managers')
+            img.card-img-top(src='/img/landing/alaska.jpg', alt="")
+        .card-body
+          h4.font-weight-light.card-title Careers with Us
+          p.card-text
+            | Northeastern grad lands job at Alaska Airlines.
+        .card-footer.bg-white.border-white
+          a.btn.btn-outline-warning(href="#") Read More
+
+
+  .container-fluid.bg-light
+
+    .row.text-center
+      .col-md-1
+      .col-md-10
+        br
+        h1.font-weight-light Inspire lightbulb moments
+        p.lead
+          | Whether you’re driving decisions across your organization or embedding insights into your software, app, or website – choose the analytics software that works the way people think.
+
+    .row
+      .col-md-1
+      .col-md-10
+        .card-group
+          .card.bg-light.border-light
+            .thumbnail
+              a(href='/getting-started/download/#package-managers')
+                img.card-img-top(src='/img/landing/enterpriseit.jpg', alt="")
+            .card-body
+              h4.font-weight-light.card-title Enterprise Analytics Powered by IT
+              p.card-text
+                | Get more from your data. And your people.
+            .card-footer.bg-light.border-light
+              a.btn.btn-outline-warning(href='/getting-started/download/#package-managers') Learn More
+          .card.bg-light.border-light
+            .thumbnail
+              img.card-img-top(src='/img/landing/embeddedanalytics.jpg', alt="")
+            .card-body
+              h4.font-weight-light.card-title Embedded Analytics
+              p.card-text
+                | Analytics your customers want. Powered by Tableau.
+            .card-footer.bg-light.border-light
+              a.btn.btn-outline-warning(href='/getting-started/download/#package-managers') Learn More

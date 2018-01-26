@@ -14,4 +14,10 @@ router.get('/pricing', (req, res) => {
   });
 });
 
+router.get('/landing', (req, res) => {
+  res.render('examples/landing', {
+    url: req.url,
+  });
+});
+
 module.exports = router;

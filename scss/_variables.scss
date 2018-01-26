@@ -15,3 +15,41 @@ $font-family-sans-serif: 'San Francisco', -apple-system, BlinkMacSystemFont, '.S
 .card {
   margin-bottom: 2rem;
 }
+
+// grow effect
+.thumbnail {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    max-width: 100%;
+}
+
+.thumbnail img {
+    max-width: 100%;
+    width: inherit;
+    transition: all 750ms ease;
+}
+
+.thumbnail img:hover {
+    transform: scale(1.05);
+}
+
+// hero
+.hero-fixed-height .hero-fixed-height__background, .hero-fixed-height .hero-fixed-height__video {
+    position: relative;
+    max-width: 1920px;
+    margin: 0 auto;
+    line-height: 0;
+}
+
+.hero-fixed-height .hero-fixed-height__background-inner {
+    height: 0;
+    padding-bottom: 33%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.hero-fixed-height__background-inner {
+  background-image: url('/img/landing/hero-1920x960.jpg');
+}

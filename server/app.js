@@ -330,6 +330,7 @@ app.use(helmet.contentSecurityPolicy({
       'http://www.google-analytics.com',
       'https://www.google-analytics.com',
       'https://d1ir1l1v07ijd0.cloudfront.net/img/ico/favicon.png',
+      'https://cdnl.tblsft.com',
     ],
     mediaSrc: [
       '\'self\'',
