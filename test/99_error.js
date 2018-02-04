@@ -27,7 +27,7 @@ describe('Test error.js routes', () => {
           // expect(err).to.not.be.ok;
           expect(res).to.have.status(404);
           expect(res.type).to.equal('text/html');
-          expect(res.text).to.contain('<span class="red">Page Not Found!</span>');
+          expect(res.text).to.contain('<span class="text-danger">404:&nbsp;Page Not Found!</span>');
           done();
         });
     });
@@ -42,7 +42,9 @@ describe('Test error.js routes', () => {
           // expect(err).to.not.be.ok;
           expect(res).to.have.status(403);
           expect(res.type).to.equal('text/html');
-          expect(res.text).to.contain('<span class="red">That is not allowed!</span>');
+          expect(res.text).to.contain(
+            '<span class="text-danger">403:&nbsp;That is not allowed!</span>'
+          );
           done();
         });
     });
@@ -57,7 +59,9 @@ describe('Test error.js routes', () => {
           // expect(err).to.not.be.ok;
           expect(res).to.have.status(413);
           expect(res.type).to.equal('text/html');
-          expect(res.text).to.contain('<span class="red">You sent too much data!</span>');
+          expect(res.text).to.contain(
+            '<span class="text-danger">413:&nbsp;You sent too much data!</span>'
+          );
           done();
         });
     });
@@ -72,7 +76,9 @@ describe('Test error.js routes', () => {
           // expect(err).to.not.be.ok;
           expect(res).to.have.status(500);
           expect(res.type).to.equal('text/html');
-          expect(res.text).to.contain('<span class="red">Testing 1, 2, 3!</span>');
+          expect(res.text).to.contain(
+            '<span class="text-danger">500:&nbsp;Testing 1, 2, 3!</span>'
+          );
           done();
         });
     });
