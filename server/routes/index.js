@@ -10,7 +10,13 @@ const router = require('express').Router();
 
 router.get('/', (req, res) => {
   res.render('index/index', {
-    url: req.url,
+    url: req.url
+  });
+});
+
+router.get('/offcanvas', (req, res) => {
+  res.render('offcanvas/test', {
+    url: req.url
   });
 });
 

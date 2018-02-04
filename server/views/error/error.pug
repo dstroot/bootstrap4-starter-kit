@@ -4,24 +4,22 @@ block head
   title #{application} &middot; Error
 
 block content
-  .container
-    h1
-      i.far.fa-thumbs-down
-      | &nbsp;&nbsp;Error:&nbsp;
-      span.red #{error.status}
-    h1
-      span.red #{error.message}
-    h3
-      | URL:&nbsp;
-      span.red #{url}
-    br
+  .container.mt-4.flex-grow
     .row
+      .col
+        h1
+          i.far.fa-thumbs-down
+          | &nbsp;&nbsp;Error:&nbsp;
+          span.text-danger #{error.status}:&nbsp;#{error.message}
+        h3
+          | URL:&nbsp;
+          span.text-danger #{url}
+    .row.mt-4
       .col-sm-4
         p
           a.btn.btn-primary.btn-lg.btn-block(href="/") Return to our Home Page
-    .row
-      .col-md-12
-        br
+    .row.mt-4
+      .col-sm-12
         if error.stack
           h4 Stack Trace:
           pre.element #{error.stack}

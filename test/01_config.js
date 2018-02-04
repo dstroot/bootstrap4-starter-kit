@@ -1,5 +1,3 @@
-/* jshint -W030 */
-/* jshint unused: false */
 /* global describe */
 /* global it */
 
@@ -7,11 +5,13 @@
  * Module Dependencies
  */
 
-const chai = require('chai');  // http://chaijs.com
+const chai = require('chai'); // http://chaijs.com
 
-const { expect }  = chai;      // http://chaijs.com/guide/styles/#expect
-const { assert } = chai;      // http://chaijs.com/guide/styles/#assert
-const should = chai.should();    // http://chaijs.com/guide/styles/#should
+const { expect } = chai; // http://chaijs.com/guide/styles/#expect
+const { assert } = chai; // http://chaijs.com/guide/styles/#assert
+
+/* exported should */
+const should = chai.should(); // http://chaijs.com/guide/styles/#should
 
 /*
 
@@ -50,7 +50,7 @@ process.env.NODE_ENV = 'test';
 
 // Test environment
 describe('Test app environment', () => {
-  it('should be "test"', (done) => {
+  it('should be "test"', done => {
     // Let's use examples for all styles - we will see
     // all tests pass and are functionally equivalent
     // NOTE: Chai provides all three styles of testing
@@ -72,10 +72,10 @@ describe('Test app environment', () => {
     expect(process.env.NODE_ENV).to.not.equal('production');
 
     // examples of "should" testing approach
-    (process.env.NODE_ENV).should.equal('test');
-    (process.env.NODE_ENV).should.not.equal('development');
-    (process.env.NODE_ENV).should.not.equal('stage');
-    (process.env.NODE_ENV).should.not.equal('production');
+    process.env.NODE_ENV.should.equal('test');
+    process.env.NODE_ENV.should.not.equal('development');
+    process.env.NODE_ENV.should.not.equal('stage');
+    process.env.NODE_ENV.should.not.equal('production');
 
     done();
   });

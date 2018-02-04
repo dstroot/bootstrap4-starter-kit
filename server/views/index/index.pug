@@ -21,11 +21,11 @@ block content
           .d-flex.flex-column.flex-md-row.lead.mb-3
             a.btn.btn-lg.btn-bd-purple.mb-3.mb-md-0.mr-md-3(href='/docs/4.0/getting-started/', onclick="ga('send', 'event', 'Jumbotron actions', 'Get started', 'Get started');") Get started
             a.btn.btn-lg.btn-outline-secondary(href='/docs/4.0/getting-started/download/', onclick="ga('send', 'event', 'Jumbotron actions', 'Download', 'Download 4.0.0-beta');") Download
-          p.text-muted.mb-0
+          p.text-muted.small.mb-0
             | Currently v4.0.0-beta
 
   .bd-featurette
-    .container.flex-grow
+    .container
       h2.bd-featurette-title Easy to get started.
       p.lead
         | Quickly include Bootstrap's CSS and JS into any project. Use your favorite package manager, download the source, or use the Bootstrap CDN.
@@ -69,7 +69,7 @@ block content
               | Some quick example text to build on the card title and make up the bulk of the card's content.
             a.btn.btn-outline-primary(href="#") Go somewhere
 
-    .card-group
+    .card-group.my-3
       .card
         img.card-img-top(src='/img/bootstrap-stack.png', alt="Card image cap")
         .card-body
@@ -91,14 +91,14 @@ block content
           p.card-text
             | Some quick example text to build on the card title and make up the bulk of the card's content.
           a.btn.btn-outline-primary(href="#") Go somewhere
-    .card-deck
+
+    .card-deck.my-3
       .card
         img.card-img-top(src='/img/bootstrap-stack.png', alt="Card image cap")
         .card-body
-          h4.card-title Managed dependencies
+          h4.card-title Dependencies
           p.card-text
-            | Include Bootstrap's source Sass and JavaScript files via Bower, Composer, Meteor, or npm. Package managed installs don't include documentation, but do include our Gruntfile and readme.
-          a.btn.btn-outline-primary(href='/getting-started/download/#package-managers') View install methods
+            | Include Bootstrap's source Sass and JavaScript files via Bower, Composer, Meteor, or npm.
         .card-footer
           a.btn.btn-outline-primary(href='/getting-started/download/#package-managers') View install methods
       .card
@@ -107,7 +107,6 @@ block content
           h4.card-title Card title
           p.card-text
             | Some quick example text to build on the card title and make up the bulk of the card's content.
-          a.btn.btn-outline-primary(href='/getting-started/download/#package-managers') View install methods
         .card-footer
           a.btn.btn-outline-primary(href='/getting-started/download/#package-managers') View install methods
       .card
@@ -116,7 +115,6 @@ block content
           h4.card-title Card title
           p.card-text
             | Some quick example text to build on the card title and make up the bulk of the card's content.
-          a.btn.btn-outline-primary(href="#") Go somewhere
         .card-footer
           a.btn.btn-outline-primary(href='/getting-started/download/#package-managers') View install methods
   //-

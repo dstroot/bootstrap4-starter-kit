@@ -1,0 +1,90 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    link(rel='icon', href='favicon.ico')
+    title Offcanvas template for Bootstrap
+    // Bootstrap core CSS
+    link(href='css/main.min.css', rel='stylesheet')
+    // Custom styles for this template
+    //- link(href='css/offcanvas.css', rel='stylesheet')
+  body.d-flex.flex-column
+
+    //-
+    //- Navigation
+    //-
+
+    nav.navbar.navbar-light.navbar-expand-md.bg-light.sticky-top
+      a.navbar-brand(href="/") Brand
+      button.navbar-toggler(type="button" data-toggle="collapse" data-target="#collapsingNavbar3")
+        span.navbar-toggler-icon
+      #collapsingNavbar3.navbar-collapse.collapse
+        ul.navbar-nav.justify-content-center
+          li.nav-item.active
+            a.nav-link(href="#") Link
+          li.nav-item
+            a.nav-link(href="#") Link
+          li.nav-item
+            a.nav-link(href="#") Link
+        ul.nav.navbar-nav.ml-auto.w-100.justify-content-end
+          li.nav-item
+            a.nav-link(href="#") Right
+
+    //-
+    //- Content
+    //- NOTE: add class "flex-grow" to fill page and push footer to bottom
+    //-
+
+    section.container.flex-grow
+      .row
+        .col-md-9.order-md-2.pt-2
+          h2 Content.
+          |  If you feel content, you're satisfied and happy. The content of a book, movie, or song is what it's about: the topic. This word has two main meanings. The first has to do with being pleased and satisfied (feeling content) or making someone
+          |             else feel happy and at peace with things (contenting them). The other meaning has to do with subject matter: the content of a history class might be American history. The content of a math class might be geometry. As long as there's a topic
+          |             or subject, there's content. Sssshhhh, no one cares.
+        .col-md-3.order-md-1.pt-3
+          .bg-faded.mb-3
+            h5.card-header List of things
+            .card-body
+              h6 Ain't nobody got time for:
+              |  1. That
+
+    //-
+    //- Footer
+    //-
+
+    footer.bg-dark.text-muted.mt-4
+      .container
+        .row.py-3
+          .col-sm-8
+            h4 Footer Content
+            p.my-2 You can use rows and columns here to organize your footer content. This a great place for a short message or some background about the company.
+          .col-sm-4
+            h4 Links
+            ul.list-unstyled
+              li
+                a.text-white(href='http://taxproductsgroupblog.com') Blog
+              li
+                a.text-white(href='http://support.tpgtaxpro.com') Support
+              li
+                a.text-white(href='/terms') Terms of Use
+        .row
+          .col-sm-12
+            p.small
+              | Copyright © #{moment().format('YYYY')} #{application}, all rights reserved.
+
+    //
+      Bootstrap core JavaScript
+      ==================================================
+    // Placed at the end of the document so the pages load faster
+    script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js', integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN', crossorigin='anonymous')
+    script.
+      window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\\/script>')
+    script(src='/lib/popper.js/popper.min.js')
+    script(src='/js/main.min.js')
+    //- script(defer, src="https://use.fontawesome.com/releases/v5.0.2/js/all.js")
+    //- script(src='lib/holderjs/holder.min.js')
+    //- script(src='js/offcanvas.js')

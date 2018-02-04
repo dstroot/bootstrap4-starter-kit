@@ -5,11 +5,11 @@
 const router = require('express').Router();
 
 /**
-* Error Routes
-*
-* NOTE: These routes only exist to test message functionality.
-* They are not used under normal circumstances.
-*/
+ * Error Routes
+ *
+ * NOTE: These routes only exist to test message functionality.
+ * They are not used under normal circumstances.
+ */
 
 router.get('/', (req, res) => {
   req.flash('error', 'That did not work! Please recheck your information.');
@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
   req.flash('success', 'Awesome! You Rock!');
 
   res.render('messages/messages', {
-    url: req.url,
+    url: req.url
   });
 });
 
