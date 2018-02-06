@@ -14,7 +14,7 @@ const router = require('express').Router();
 router.get('/', (req, res) => {
   req.flash('error', 'That did not work! Please recheck your information.');
   req.flash('warning', 'Please recheck your information.');
-  req.flash('info', 'Please recheck your information.');
+  req.flash('info', 'An event happened. Now you know.');
   req.flash('success', 'Awesome! You Rock!');
 
   res.render('messages/messages', {
