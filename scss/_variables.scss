@@ -12,6 +12,10 @@ $bd-info:            #5bc0de;
 
 $font-family-sans-serif: 'San Francisco', -apple-system, BlinkMacSystemFont, '.SFNSText-Regular', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
 
+.bg-purple {
+  background-color: $bd-purple;
+}
+
 .card {
   margin-bottom: 2rem;
 }
