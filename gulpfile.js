@@ -159,6 +159,17 @@ gulp.task('styles', () => {
     .pipe($.livereload()); // Initiate a reload
 });
 
+// gulp.task('sass', () =>
+//   gulp
+//     .src('scss/main.scss')
+//     .pipe($.sass().on('error', $.sass.logError))
+//     .pipe(gulp.dest('./public/css'))
+// );
+//
+// gulp.task('sass:watch', () => {
+//   gulp.watch('./scss', ['sass']);
+// });
+
 /**
  * Transpile es6
  */

@@ -10,7 +10,15 @@ $bd-danger:          #d9534f;
 $bd-warning:         #f0ad4e;
 $bd-info:            #5bc0de;
 
-$font-family-sans-serif: 'San Francisco', -apple-system, BlinkMacSystemFont, '.SFNSText-Regular', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
+// $font-family-sans-serif: 'San Francisco', -apple-system, BlinkMacSystemFont, '.SFNSText-Regular', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
+
+// https://furbo.org/2018/03/28/system-fonts-in-css/
+// In many cases, you’ll also have to take backward compatibility into
+// account — not every visitor has the latest & greatest browser. This
+// CSS should cover all the bases:
+
+$font-family-sans-serif: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif !default;
+
 
 .bg-purple {
   background-color: $bd-purple;
