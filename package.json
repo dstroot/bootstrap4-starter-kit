@@ -34,7 +34,7 @@
     "prettier": "prettier --single-quote --trailing-comma es5 --write './server/**/*.js'"
   },
   "engines": {
-    "node": "9.x.x"
+    "node": "10.x.x"
   },
   "dependencies": {
     "animate.css": "^3.5.2",
